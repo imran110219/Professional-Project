@@ -1,0 +1,7 @@
+package com.sadman.onlineshowroom.repository;
+
+import com.sadman.onlineshowroom.model.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoryRepository extends JpaRepository<Category, Long> {
+}
