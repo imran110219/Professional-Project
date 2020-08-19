@@ -19,7 +19,7 @@ public class Image {
     @Column(name = "upload_date")
     private Date uploadDate;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "productId")
     private Product product;
 

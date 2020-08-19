@@ -14,6 +14,8 @@ public class Employee {
     private String lastName;
     @Column(name = "username")
     private String userName;
+    @Column(name = "email")
+    private String email;
     @Column(name = "password")
     private String password;
     @Column(name = "phone")
@@ -55,6 +57,14 @@ public class Employee {
         this.userName = userName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -85,5 +95,11 @@ public class Employee {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee [id=" + id + ", firstName=" + firstName +
+                ", lastName=" + lastName + ", email=" + email   + "]";
     }
 }
