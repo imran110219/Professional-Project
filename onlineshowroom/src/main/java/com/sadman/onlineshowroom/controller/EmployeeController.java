@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user/")
+@RequestMapping("/")
 public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
-    @RequestMapping
+    @RequestMapping(value = "/user")
     public String getAllEmployees(Model model)
     {
         List<Employee> list = employeeService.getAllEmployees();
@@ -26,14 +26,14 @@ public class EmployeeController {
         return "employee-list";
     }
 
-    @RequestMapping(path = {"/add"})
+    @RequestMapping(path = {"/user/add"})
     public String addEmployeeById(Model model) throws Exception
     {
         model.addAttribute("employee", new Employee());
         return "add-employee";
     }
 
-    @RequestMapping(path = {"/edit/{id}"})
+    @RequestMapping(path = {"/user/edit/{id}"})
     public String editEmployeeById(Model model, @PathVariable("id") Long id) throws Exception
     {
         Employee entity = employeeService.getEmployeeById(id);
@@ -41,25 +41,25 @@ public class EmployeeController {
         return "edit-employee";
     }
 
-    @RequestMapping(path = "/delete/{id}")
+    @RequestMapping(path = "/user/delete/{id}")
     public String deleteEmployeeById(Model model, @PathVariable("id") Long id)
             throws Exception
     {
         employeeService.deleteEmployeeById(id);
-        return "redirect:/";
+        return "redirect:/user";
     }
 
-    @RequestMapping(path = "/createEmployee", method = RequestMethod.POST)
+    @RequestMapping(path = "/user/createEmployee", method = RequestMethod.POST)
     public String createEmployee(Employee employee)
     {
         employeeService.createEmployee(employee);
-        return "redirect:/";
+        return "redirect:/user";
     }
 
-    @RequestMapping(path = "/updateEmployee", method = RequestMethod.POST)
+    @RequestMapping(path = "/user/updateEmployee", method = RequestMethod.POST)
     public String updateEmployee(Employee employee)
     {
         employeeService.updateEmployee(employee);
-        return "redirect:/";
+        return "redirect:/user";
     }
 }

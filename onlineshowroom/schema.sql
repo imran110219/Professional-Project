@@ -37,12 +37,12 @@ DROP TABLE IF EXISTS products;
 
 CREATE TABLE products (
   id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `categoryId` INT(11) NOT NULL,
-  `supplierId` INT(11) NOT NULL,
   `name` VARCHAR(100) NOT NULL,
   `price` DOUBLE NOT NULL,
   `quantity` DOUBLE NOT NULL,
   `description` TEXT NOT NULL,
+  `categoryId` INT(11) NOT NULL,
+  `supplierId` INT(11) NOT NULL,
   FOREIGN KEY (categoryId) REFERENCES categories(id),
   FOREIGN KEY (supplierId) REFERENCES suppliers(id)
 );

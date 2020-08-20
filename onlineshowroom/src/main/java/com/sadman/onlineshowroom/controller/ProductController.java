@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-@RequestMapping("/product/")
+@RequestMapping("/")
 public class ProductController {
     @Autowired
     ProductService productService;
 
-    @RequestMapping
+    @RequestMapping(value = {"/", "/product"})
     public String getAllProducts(Model model)
     {
         List<Product> list = productService.getAllProducts();
@@ -27,22 +27,22 @@ public class ProductController {
         return "product-list";
     }
 
-    @RequestMapping(path = {"/add"})
+    @RequestMapping(value = "/product/add")
     public String addProductById(Model model) throws Exception
     {
         model.addAttribute("product", new Product());
-        return "add-employee";
+        return "add-product";
     }
 
-    @RequestMapping(path = {"/edit/{id}"})
+    @RequestMapping(value = "/product/edit/{id}")
     public String editProductById(Model model, @PathVariable("id") Long id) throws Exception
     {
         Product entity = productService.getProductById(id);
         model.addAttribute("product", entity);
-        return "edit-employee";
+        return "edit-product";
     }
 
-    @RequestMapping(path = "/delete/{id}")
+    @RequestMapping(value = "/product/delete/{id}")
     public String deleteProductById(Model model, @PathVariable("id") Long id)
             throws Exception
     {
@@ -50,14 +50,14 @@ public class ProductController {
         return "redirect:/";
     }
 
-    @RequestMapping(path = "/createProduct", method = RequestMethod.POST)
+    @RequestMapping(value = "/product/createProduct", method = RequestMethod.POST)
     public String createProduct(Product product)
     {
         productService.createProduct(product);
         return "redirect:/";
     }
 
-    @RequestMapping(path = "/updateProduct", method = RequestMethod.POST)
+    @RequestMapping(value = "/product/updateProduct", method = RequestMethod.POST)
     public String updateProduct(Product product)
     {
         productService.updateProduct(product);

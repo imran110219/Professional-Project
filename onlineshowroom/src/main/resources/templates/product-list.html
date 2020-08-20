@@ -16,8 +16,9 @@
         <div class="card-body">
             <div th:switch="${products}" class="container my-5">
                 <p class="my-5">
-                    <a href="/add" class="btn btn-primary">
-                        <i class="fas fa-user-plus ml-2"> Add Product</i></a>
+                    <a href="/product/add" class="btn btn-primary">
+                        <i class="fas fa-user-plus ml-2">Add Product</i>
+                    </a>
                 </p>
                 <div class="col-md-10">
                     <h2 th:case="null">No record found !!</h2>
@@ -40,13 +41,13 @@
                                 <td th:text="${product.quantity}"></td>
                                 <td th:text="${product.description}"></td>
                                 <td>
-                                    <a th:href="@{/edit/{id}(id=${product.id})}"
+                                    <a th:href="@{/product/edit/{id}(id=${product.id})}"
                                        class="btn btn-primary">
                                         <i class="fas fa-user-edit ml-2"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a th:href="@{/delete/{id}(id=${product.id})}"
+                                    <a th:href="@{/product/delete/{id}(id=${product.id})}"
                                        class="btn btn-primary">
                                         <i class="fas fa-user-times ml-2"></i>
                                     </a>
