@@ -10,18 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
-@RequestMapping("/")
-public class EmployeeControler {
+@RequestMapping("/user/")
+public class EmployeeController {
     @Autowired
-    EmployeeService service;
+    EmployeeService employeeService;
 
     @RequestMapping
     public String getAllEmployees(Model model)
     {
-        List<Employee> list = service.getAllEmployees();
+        List<Employee> list = employeeService.getAllEmployees();
 
         model.addAttribute("employees", list);
         return "employee-list";
@@ -37,7 +36,7 @@ public class EmployeeControler {
     @RequestMapping(path = {"/edit/{id}"})
     public String editEmployeeById(Model model, @PathVariable("id") Long id) throws Exception
     {
-        Employee entity = service.getEmployeeById(id);
+        Employee entity = employeeService.getEmployeeById(id);
         model.addAttribute("employee", entity);
         return "edit-employee";
     }
@@ -46,21 +45,21 @@ public class EmployeeControler {
     public String deleteEmployeeById(Model model, @PathVariable("id") Long id)
             throws Exception
     {
-        service.deleteEmployeeById(id);
+        employeeService.deleteEmployeeById(id);
         return "redirect:/";
     }
 
     @RequestMapping(path = "/createEmployee", method = RequestMethod.POST)
     public String createEmployee(Employee employee)
     {
-        service.createEmployee(employee);
+        employeeService.createEmployee(employee);
         return "redirect:/";
     }
 
     @RequestMapping(path = "/updateEmployee", method = RequestMethod.POST)
     public String updateEmployee(Employee employee)
     {
-        service.updateEmployee(employee);
+        employeeService.updateEmployee(employee);
         return "redirect:/";
     }
 }
