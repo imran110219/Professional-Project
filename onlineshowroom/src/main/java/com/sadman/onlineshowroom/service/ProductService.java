@@ -1,6 +1,5 @@
 package com.sadman.onlineshowroom.service;
 
-import com.sadman.onlineshowroom.model.Employee;
 import com.sadman.onlineshowroom.model.Product;
 import com.sadman.onlineshowroom.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,14 @@
-INSERT INTO `employees` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `phone`, `address`, `type`) VALUES
-(1, 'john', 'cena', 'admin', 'admin@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '0099887766', 'New York, USA', 'admin'),
-(2, 'Martha', 'Jones', 'user', 'user@gmail.com', '12dea96fec20593566ab75692c9949596833adc9', '123456789', 'Seattle', 'employee');
+INSERT  INTO `roles`(`role_id`,`role`) VALUES 
+(1,'ADMIN'),
+(2,'USER');
+
+INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `username`, `email`, `password`, `phone`, `active`) VALUES
+(1, 'john', 'cena', 'admin', 'admin@gmail.com', '$2a$10$RZEFzUPZfZ6QSPZUsYZ8RuiNDG5Y8YYhOm4kp.R0aMoz0W/fb3Rym', '0099887766', ''),
+(2, 'Martha', 'Jones', 'user', 'user@gmail.com', '$2a$10$RZEFzUPZfZ6QSPZUsYZ8RuiNDG5Y8YYhOm4kp.R0aMoz0W/fb3Rym', '123456789', '');
+
+INSERT  INTO `user_role`(`user_id`,`role_id`) VALUES 
+(1,1),
+(2,2);
 
 INSERT INTO `categories` (`id`, `category_name`, `category_description`) VALUES
 (1, 'TV', 'TV Product'),
@@ -8,7 +16,7 @@ INSERT INTO `categories` (`id`, `category_name`, `category_description`) VALUES
 (3, 'Mobile', 'Mobile Product'),
 (4, 'Fridge', 'Fridge Product');
 
-INSERT INTO `suppliers` (`id`, `name`, `phone`, `address`) VALUES
+INSERT INTO `suppliers` (`id`, `supplier_name`, `phone`, `address`) VALUES
 (1, 'Walton', '00000000', 'USA'),
 (2, 'Samsung', '1111111', 'France'),
 (3, 'Minister', '22222222', 'France'),

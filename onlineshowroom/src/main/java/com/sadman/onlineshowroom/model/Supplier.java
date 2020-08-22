@@ -8,8 +8,8 @@ public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "name")
-    private String name;
+    @Column(name = "supplier_name")
+    private String supplierName;
     @Column(name = "phone")
     private String phone;
     @Column(name = "address")
@@ -23,12 +23,12 @@ public class Supplier {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getSupplierName() {
+        return supplierName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
     public String getPhone() {

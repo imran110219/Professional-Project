@@ -1,9 +1,11 @@
 package com.sadman.onlineshowroom.repository;
 
-import com.sadman.onlineshowroom.model.Employee;
+import com.sadman.onlineshowroom.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+public interface RoleRepository extends JpaRepository<Role, Integer> {
+    Role findByRole(String role);
 }
+

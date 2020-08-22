@@ -1,6 +1,5 @@
 package com.sadman.onlineshowroom.controller;
 
-import com.sadman.onlineshowroom.model.Employee;
 import com.sadman.onlineshowroom.model.Product;
 import com.sadman.onlineshowroom.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @RequestMapping(value = {"/", "/product"})
+    @RequestMapping(value = "/product")
     public String getAllProducts(Model model)
     {
         List<Product> list = productService.getAllProducts();
