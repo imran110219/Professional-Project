@@ -1,7 +1,11 @@
 package com.sadman.onlineshowroom.controller;
 
+import com.sadman.onlineshowroom.model.Category;
 import com.sadman.onlineshowroom.model.Product;
+import com.sadman.onlineshowroom.model.Supplier;
+import com.sadman.onlineshowroom.service.CategoryService;
 import com.sadman.onlineshowroom.service.ProductService;
+import com.sadman.onlineshowroom.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +20,12 @@ import java.util.List;
 public class ProductController {
     @Autowired
     ProductService productService;
+
+    @Autowired
+    CategoryService categoryService;
+
+    @Autowired
+    SupplierService supplierService;
 
     @RequestMapping(value = "/product")
     public String getAllProducts(Model model)
@@ -37,7 +47,11 @@ public class ProductController {
     public String editProductById(Model model, @PathVariable("id") Long id) throws Exception
     {
         Product entity = productService.getProductById(id);
+        List<Category> categoryList = categoryService.getAllCategories();
+        List<Supplier> supplierList = supplierService.getAllSuppliers();
         model.addAttribute("product", entity);
+        model.addAttribute("categories", categoryList);
+        model.addAttribute("suppliers", supplierList);
         return "edit-product";
     }
 
