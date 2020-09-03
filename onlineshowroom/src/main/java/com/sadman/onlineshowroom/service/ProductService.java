@@ -1,7 +1,11 @@
 package com.sadman.onlineshowroom.service;
 
+import com.sadman.onlineshowroom.model.Category;
 import com.sadman.onlineshowroom.model.Product;
+import com.sadman.onlineshowroom.model.Supplier;
+import com.sadman.onlineshowroom.repository.CategoryRepository;
 import com.sadman.onlineshowroom.repository.ProductRepository;
+import com.sadman.onlineshowroom.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +17,12 @@ import java.util.Optional;
 public class ProductService {
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
+
+    @Autowired
+    SupplierRepository supplierRepository;
 
     public List<Product> getAllProducts() {
         List<Product> result = productRepository.findAll();
@@ -48,6 +58,10 @@ public class ProductService {
             newEntity.setPrice(entity.getPrice());
             newEntity.setQuantity(entity.getQuantity());
             newEntity.setDescription(entity.getDescription());
+            Optional<Category> newCategory = categoryRepository.findById(entity.getCategory().getId());
+            Optional<Supplier> newSupplier = supplierRepository.findById(entity.getSupplier().getId());
+            newEntity.setSupplier(newSupplier.get());
+            newEntity.setCategory(newCategory.get());
 
             newEntity = productRepository.save(newEntity);
 

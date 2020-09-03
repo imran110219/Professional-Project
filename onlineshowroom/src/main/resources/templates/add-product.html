@@ -39,6 +39,20 @@
                             <input type="text" th:field="*{description}" class="form-control"
                                    id="description" placeholder="Description" />
                         </div>
+                        <div class="form-group col-md-8">
+                            <label for="supplier" class="col-form-label">Supplier</label>
+                            <select class="form-control" th:field="*{supplier.id}"  id="dropSupplier">
+                                <option value="0">select supplier</option>
+                                <option th:each="supplier : ${suppliers}" th:value="${supplier.id}" th:text="${supplier.supplierName}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="category" class="col-form-label">Category</label>
+                            <select class="form-control" th:field="*{category.id}"  id="dropCategory">
+                                <option value="0">select category</option>
+                                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}"></option>
+                            </select>
+                        </div>
 
                         <div class="col-md-6">
                             <input type="submit" class="btn btn-primary" value=" Submit ">

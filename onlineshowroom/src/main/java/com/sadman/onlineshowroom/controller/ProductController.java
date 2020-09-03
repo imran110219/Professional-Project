@@ -39,7 +39,11 @@ public class ProductController {
     @RequestMapping(value = "/product/add")
     public String addProductById(Model model) throws Exception
     {
+        List<Category> categoryList = categoryService.getAllCategories();
+        List<Supplier> supplierList = supplierService.getAllSuppliers();
         model.addAttribute("product", new Product());
+        model.addAttribute("categories", categoryList);
+        model.addAttribute("suppliers", supplierList);
         return "add-product";
     }
 
@@ -67,13 +71,13 @@ public class ProductController {
     public String createProduct(Product product)
     {
         productService.createProduct(product);
-        return "redirect:/";
+        return "redirect:/product";
     }
 
     @RequestMapping(value = "/product/updateProduct", method = RequestMethod.POST)
     public String updateProduct(Product product)
     {
         productService.updateProduct(product);
-        return "redirect:/";
+        return "redirect:/product";
     }
 }
