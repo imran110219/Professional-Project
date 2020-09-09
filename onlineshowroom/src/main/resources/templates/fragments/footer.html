@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
-</head>
-<body>
-<!--/*  Multiple fragments may be defined in one file */-->
-<div th:fragment="footer" th:align="center">
-    &copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2017</span>
-    <span>My Awesome App</span>
+<div th:fragment="footer" class="footer" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container">
+        <span class="text-muted">Place sticky footer content here. &copy; 2020 @sadmansobhan</span>
+    </div>
 </div>
-<div th:fragment="footer-admin" th:align="center">
-    &copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2017</span>
-    <span>My Awesome App </span><span th:text="${@environment.getProperty('app.version')}"></span>
-</div>
-</body>
-</html>

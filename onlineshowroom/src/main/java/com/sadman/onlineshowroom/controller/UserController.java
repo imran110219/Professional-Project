@@ -31,14 +31,14 @@ public class UserController {
     {
         List<User> list = userService.getAllUsers();
         model.addAttribute("users", list);
-        return "user-list";
+        return "user/user-list";
     }
 
     @RequestMapping(path = {"/user/add"})
     public String addUser(Model model) throws Exception
     {
         model.addAttribute("user", new User());
-        return "add-user";
+        return "user/add-user";
     }
 
     @RequestMapping(path = {"/user/edit/{id}"})
@@ -46,7 +46,7 @@ public class UserController {
     {
         User entity = userService.getUserById(id);
         model.addAttribute("user", entity);
-        return "edit-user";
+        return "user/edit-user";
     }
 
     @RequestMapping(path = "/user/delete/{id}")

@@ -33,7 +33,7 @@ public class ProductController {
         List<Product> list = productService.getAllProducts();
 
         model.addAttribute("products", list);
-        return "product-list";
+        return "product/product-list";
     }
 
     @RequestMapping(value = "/product/add")
@@ -44,7 +44,7 @@ public class ProductController {
         model.addAttribute("product", new Product());
         model.addAttribute("categories", categoryList);
         model.addAttribute("suppliers", supplierList);
-        return "add-product";
+        return "product/add-product";
     }
 
     @RequestMapping(value = "/product/edit/{id}")
@@ -56,7 +56,7 @@ public class ProductController {
         model.addAttribute("product", entity);
         model.addAttribute("categories", categoryList);
         model.addAttribute("suppliers", supplierList);
-        return "edit-product";
+        return "product/edit-product";
     }
 
     @RequestMapping(value = "/product/delete/{id}")

@@ -9,13 +9,8 @@ import java.security.Principal;
 @Controller
 class HomeController {
 
-    @ModelAttribute("module")
-    String module() {
-        return "home";
-    }
-
     @GetMapping("/")
-    String index(Principal principal) {
-        return principal != null ? "home/homeSignedIn" : "home/homeNotSignedIn";
+    public String showIndex(){
+        return "home";
     }
 }
