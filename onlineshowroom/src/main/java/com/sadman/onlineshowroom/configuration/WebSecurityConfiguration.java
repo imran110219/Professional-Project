@@ -42,7 +42,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/product/**").permitAll()
                 .antMatchers("/category/**").permitAll()
                 .antMatchers("/supplier/**").permitAll()
-                .antMatchers("/user/**").hasAuthority("ADMIN")
+//                .antMatchers("/user/**").hasAuthority("ADMIN")
+                .antMatchers("/user/**").hasAnyAuthority("USER","ADMIN")
+//                .antMatchers("/user/**").hasAnyRole("ROLE_ADMIN","ROLE_USER")
+
                 .anyRequest()
                 .authenticated()
                 .and().csrf().disable()
