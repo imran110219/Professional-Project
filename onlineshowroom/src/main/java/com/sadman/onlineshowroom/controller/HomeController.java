@@ -9,8 +9,13 @@ import java.security.Principal;
 @Controller
 class HomeController {
 
-    @GetMapping("/")
-    public String showIndex(){
+    @GetMapping("/home")
+    public String home(){
         return "home";
+    }
+
+    @GetMapping("/")
+    public String index(){
+        return "index";
     }
 }
