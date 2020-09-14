@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,20 +12,27 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+<!--    <link type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="css/slick.css"/>
-    <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+    <link href="../static/css/slick.css" th:href="@{/css/slick.css}" rel="stylesheet"/>
+
+    <link href="../static/css/slick-theme.css" th:href="@{/css/slick-theme.css}" rel="stylesheet"/>
 
     <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+<!--    <link type="text/css" href="../static/css/nouislider.min.css" th:href="@{/css/nouislider.min.css}" rel="stylesheet"/>-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.0.0/nouislider.min.css" integrity="sha512-AYPBFS1TI5DlR5nkKxzCljZyS5gib+JkSQ5uXF/eIiBUZ+GJNacqQHAkvwLB3BA1d+ps2wuuzMwm1ExxzWoFnw==" crossorigin="anonymous" />
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+<!--    <link type="text/css" href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -64,7 +71,8 @@
                 <div class="col-md-3">
                     <div class="header-logo">
                         <a href="#" class="logo">
-                            <img src="./img/logo.png" alt="">
+                            <img th:src="@{/images/logo.png}" alt="">
+<!--                            <img src="./images/logo.png" alt="">-->
                         </a>
                     </div>
                 </div>
@@ -110,7 +118,7 @@
                                 <div class="cart-list">
                                     <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="./img/product01.png" alt="">
+                                            <img src="./img/product01.png" th:src="@{/images/product01.png}" alt="">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -121,7 +129,7 @@
 
                                     <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="./img/product02.png" alt="">
+                                            <img src="./img/product02.png" th:src="@{/images/product02.png}" alt="">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -196,7 +204,7 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="./img/shop01.png" alt="">
+                        <img src="./img/shop01.png" th:src="@{/images/shop01.png}" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Laptop<br>Collection</h3>
@@ -210,7 +218,7 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="./img/shop03.png" alt="">
+                        <img src="./img/shop03.png" th:src="@{/images/shop03.png}" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Accessories<br>Collection</h3>
@@ -224,7 +232,7 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="./img/shop02.png" alt="">
+                        <img src="./img/shop02.png" th:src="@{/images/shop02.png}" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Cameras<br>Collection</h3>
@@ -273,7 +281,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product01.png" alt="">
+                                        <img src="./img/product01.png" th:src="@{/images/product01.png}" alt="">
                                         <div class="product-label">
                                             <span class="sale">-30%</span>
                                             <span class="new">NEW</span>
@@ -305,7 +313,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product02.png" alt="">
+                                        <img src="./img/product02.png" th:src="@{/images/product02.png}" alt="">
                                         <div class="product-label">
                                             <span class="new">NEW</span>
                                         </div>
@@ -336,7 +344,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product03.png" alt="">
+                                        <img src="./img/product03.png" th:src="@{/images/product03.png}" alt="">
                                         <div class="product-label">
                                             <span class="sale">-30%</span>
                                         </div>
@@ -362,7 +370,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product04.png" alt="">
+                                        <img src="./img/product04.png" th:src="@{/images/product04.png}" alt="">
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Category</p>
@@ -390,7 +398,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product05.png" alt="">
+                                        <img src="./img/product05.png" th:src="@{/images/product05.png}" alt="">
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Category</p>
@@ -540,7 +548,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product07.png" alt="">
+                                        <img src="./img/product07.png" th:src="@{/images/product07.png}" alt="">
                                         <div class="product-label">
                                             <span class="new">NEW</span>
                                         </div>
@@ -571,7 +579,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product08.png" alt="">
+                                        <img src="./img/product08.png" th:src="@{/images/product08.png}" alt="">
                                         <div class="product-label">
                                             <span class="sale">-30%</span>
                                         </div>
@@ -597,7 +605,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product09.png" alt="">
+                                        <img src="./img/product09.png" th:src="@{/images/product09.png}" alt="">
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Category</p>
@@ -625,7 +633,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product01.png" alt="">
+                                        <img src="./img/product01.png" th:src="@{/images/product01.png}" alt="">
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Category</p>
@@ -683,7 +691,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product07.png" alt="">
+                                <img src="./img/product07.png" th:src="@{/images/product07.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -696,7 +704,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product08.png" alt="">
+                                <img src="./img/product08.png" th:src="@{/images/product08.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -709,7 +717,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product09.png" alt="">
+                                <img src="./img/product09.png" th:src="@{/images/product09.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -724,7 +732,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product01.png" alt="">
+                                <img src="./img/product01.png" th:src="@{/images/product01.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -737,7 +745,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product02.png" alt="">
+                                <img src="./img/product02.png" th:src="@{/images/product02.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -750,7 +758,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product03.png" alt="">
+                                <img src="./img/product03.png" th:src="@{/images/product03.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -776,7 +784,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product04.png" alt="">
+                                <img src="./img/product04.png" th:src="@{/images/product04.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -789,7 +797,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product05.png" alt="">
+                                <img src="./img/product05.png" th:src="@{/images/product05.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -802,7 +810,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product06.png" alt="">
+                                <img src="./img/product06.png" th:src="@{/images/product06.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -817,7 +825,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product07.png" alt="">
+                                <img src="./img/product07.png" th:src="@{/images/product07.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -830,7 +838,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product08.png" alt="">
+                                <img src="./img/product08.png" th:src="@{/images/product08.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -843,7 +851,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product09.png" alt="">
+                                <img src="./img/product09.png" th:src="@{/images/product09.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -871,7 +879,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product01.png" alt="">
+                                <img src="./img/product01.png" th:src="@{/images/product01.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -884,7 +892,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product02.png" alt="">
+                                <img src="./img/product02.png" th:src="@{/images/product02.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -897,7 +905,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product03.png" alt="">
+                                <img src="./img/product03.png" th:src="@{/images/product03.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -912,7 +920,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product04.png" alt="">
+                                <img src="./img/product04.png" th:src="@{/images/product04.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -925,7 +933,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product05.png" alt="">
+                                <img src="./img/product05.png" th:src="@{/images/product05.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -938,7 +946,7 @@
                         <!-- product widget -->
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product06.png" alt="">
+                                <img src="./img/product06.png" th:src="@{/images/product06.png}" alt="">
                             </div>
                             <div class="product-body">
                                 <p class="product-category">Category</p>
@@ -1091,12 +1099,16 @@
 <!-- /FOOTER -->
 
 <!-- jQuery Plugins -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/nouislider.min.js"></script>
-<script src="js/jquery.zoom.min.js"></script>
-<script src="js/main.js"></script>
+<!--<script th:href="@{/js/jquery.min.js}"></script>-->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<!--<script th:href="@{/js/bootstrap.min.js}"></script>-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script th:href="@{/js/slick.min.js}"></script>
+<!--<script th:href="@{/js/nouislider.min.js}"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.0.0/nouislider.min.js" integrity="sha512-6f87+OtwjlPp6tI8Fz0vh7gsRrUTzxxq4Yz7FstYTtNs+LDuHJg8j4bZRliwTMqcEmDw6SpBYrVZaODofiyLag==" crossorigin="anonymous"></script>
+<!--<script th:href="@{/js/jquery.zoom.min.js}"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.7.20/jquery.zoom.min.js"></script>
+<script th:href="@{/js/main.js}"></script>
 
 </body>
 </html>
