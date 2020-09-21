@@ -1,8 +1,6 @@
 package com.sadman.onlineshowroom.controller;
 
 import com.sadman.onlineshowroom.model.Category;
-import com.sadman.onlineshowroom.model.Product;
-import com.sadman.onlineshowroom.model.Supplier;
 import com.sadman.onlineshowroom.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
