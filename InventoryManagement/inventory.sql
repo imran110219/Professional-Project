@@ -27,9 +27,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
-  `type` varchar(100) NOT NULL,
-  `description` text NOT NULL
+  `id` INT(11) NOT NULL,
+  `type` VARCHAR(100) NOT NULL,
+  `description` TEXT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -53,6 +53,7 @@ CREATE TABLE `employees` (
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `username` varchar(40) NOT NULL,
+  `email` varchar(40) NOT NULL,
   `password` varchar(100) NOT NULL,
   `phone` varchar(100) NOT NULL,
   `address` text NOT NULL,
@@ -63,9 +64,9 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
-INSERT INTO `employees` (`id`, `firstname`, `lastname`, `username`, `password`, `phone`, `address`, `type`) VALUES
-(1, 'john', 'cena', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', '0099887766', 'New York, USA', 'admin'),
-(2, 'Martha', 'Jones', 'user', '12dea96fec20593566ab75692c9949596833adc9', '123456789', 'Seattle', 'employee');
+INSERT INTO `employees` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `phone`, `address`, `type`) VALUES
+(1, 'john', 'cena', 'admin', 'admin@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '0099887766', 'New York, USA', 'admin'),
+(2, 'Martha', 'Jones', 'user', 'user@gmail.com', '12dea96fec20593566ab75692c9949596833adc9', '123456789', 'Seattle', 'employee');
 
 -- --------------------------------------------------------
 
