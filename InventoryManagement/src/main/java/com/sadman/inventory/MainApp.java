@@ -37,6 +37,7 @@ public class MainApp extends Application {
 
     public static void main(String[] args) {
 
+        System.out.println("Initialize");
         if (HibernateUtil.setSessionFactory()) {
             launch(args);
             HibernateUtil.getSessionFactory().close();

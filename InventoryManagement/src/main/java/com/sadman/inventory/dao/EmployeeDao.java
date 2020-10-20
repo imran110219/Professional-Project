@@ -7,6 +7,7 @@ public interface EmployeeDao {
     
     public ObservableList<Employee> getEmployees();
     public Employee getEmployee(long id);
+    public Employee getEmployeeByUsername(String username);
     public String getEmployeeType(String username);
     public void saveEmployee(Employee employee);
     public void updateEmployee(Employee employee);
