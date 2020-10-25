@@ -2,8 +2,6 @@ package com.sadman.inventory;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -20,6 +18,6 @@ public class Test {
 
         System.out.println(properties.getProperty("admin.report.email"));
 
-        EmailUtil.sendEmail();
+        EmailService.sendEmail();
     }
 }

@@ -16,7 +16,7 @@ import javax.activation.*;
 /**
  * @author Sadman
  */
-public class EmailUtil {
+public class EmailService {
     private static EmployeeModel model = new EmployeeModel();
 
     public static void sendEmail(){
