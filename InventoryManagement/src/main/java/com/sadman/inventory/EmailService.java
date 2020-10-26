@@ -3,12 +3,10 @@ package com.sadman.inventory;
 import com.sadman.inventory.model.EmployeeModel;
 import com.sadman.inventory.entity.Employee;
 
-import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
@@ -16,8 +14,26 @@ import javax.activation.*;
 /**
  * @author Sadman
  */
+class EmailTask extends TimerTask {
+    public void run() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        System.out.println("Email is sending " + dtf.format(LocalDateTime.now()));
+        EmailService.sendEmail();
+    }
+}
+
 public class EmailService {
     private static EmployeeModel model = new EmployeeModel();
+
+    public static void sendTimerEmail(){
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 21); // Time 10 PM
+        today.set(Calendar.MINUTE, 23);
+        today.set(Calendar.SECOND, 0);
+
+        Timer timer = new Timer();
+        timer.schedule(new EmailTask(), today.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS)); // period: 1 day
+    }
 
     public static void sendEmail(){
         HibernateUtil.setSessionFactory();
