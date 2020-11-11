@@ -25,22 +25,19 @@ public class InvoiceModel implements InvoiceDao {
         session.close();
         products.stream().forEach(list::add);
 
-
         return list;
     }
 
     @Override
-    public ObservableList<Invoice> getInvoicesByDate() {
-        ObservableList<Invoice> list = FXCollections.observableArrayList();
+    public List<Invoice> getInvoicesByDate() {
 
         session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        List<Invoice> products = session.createQuery("from Invoice where datetime > CURDATE()").list();
+        List<Invoice> invoices = session.createQuery("from Invoice where date > current_date").list();
         session.getTransaction().commit();
         session.close();
-        products.stream().forEach(list::add);
 
-        return list;
+        return invoices;
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.sadman.inventory.pdf.PrintDailyReport;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 public class Test {
@@ -13,19 +14,20 @@ public class Test {
         String password = "123456";
         System.out.println(DigestUtils.sha1Hex(password));
 
-        InvoiceModel invoiceModel = new InvoiceModel();
 
-        for (Invoice i : invoiceModel.getInvoicesByDate()) {
-            System.out.println(i.getPayable());
-        }
+        HibernateUtil.setSessionFactory();
 
-        Properties properties = new Properties();
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        try (InputStream is = loader.getResourceAsStream("application.properties")) {
-            properties.load(is);
-        }
+        PrintDailyReport printDailyReport = new PrintDailyReport();
+        printDailyReport.generateReport();
 
-        System.out.println(properties.getProperty("admin.report.email"));
+
+//        Properties properties = new Properties();
+//        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+//        try (InputStream is = loader.getResourceAsStream("application.properties")) {
+//            properties.load(is);
+//        }
+//
+//        System.out.println(properties.getProperty("admin.report.email"));
 
         EmailService.sendEmail();
     }

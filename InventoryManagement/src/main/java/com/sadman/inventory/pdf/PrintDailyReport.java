@@ -3,10 +3,7 @@ package com.sadman.inventory.pdf;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import com.sadman.inventory.entity.Invoice;
-import com.sadman.inventory.entity.Item;
 import com.sadman.inventory.model.InvoiceModel;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -16,10 +13,6 @@ import java.util.List;
  * @author Sadman
  */
 public class PrintDailyReport {
-
-    private InvoiceModel invoiceModel;
-    private ObservableList<Item> items;
-//    private String barcode;
 
     public void generateReport() {
 
@@ -31,13 +24,13 @@ public class PrintDailyReport {
 
             Paragraph paragraph = new Paragraph("Daily Report");
             document.add(paragraph);
-            addEmptyLine(paragraph, 5);
+            addEmptyLine(paragraph, 10);
 
 //            PdfContentByte cb = writer.getDirectContent();
 //            BarcodeEAN codeEAN = new BarcodeEAN();
 //            codeEAN.setCodeType(codeEAN.EAN13);
 //            document.add(codeEAN.createImageWithBarcode(cb, BaseColor.BLACK, BaseColor.DARK_GRAY));
-            addEmptyLine(paragraph, 5);
+//            addEmptyLine(paragraph, 5);
 
             PdfPTable table = createTable();
             document.add(table);
@@ -64,7 +57,11 @@ public class PrintDailyReport {
         table.addCell(c1);
         table.setHeaderRows(1);
 
-        for (Invoice i : invoiceModel.getInvoicesByDate()) {
+        InvoiceModel invoiceModel = new InvoiceModel();
+
+        List<Invoice> items = invoiceModel.getInvoicesByDate();
+
+        for (Invoice i : items) {
             table.addCell(i.getEmployee().getUserName());
             table.addCell(String.valueOf(i.getPayable()));
             table.addCell(String.valueOf(i.getDate()));
