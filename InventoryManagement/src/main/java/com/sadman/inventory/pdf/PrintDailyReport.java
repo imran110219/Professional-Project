@@ -7,6 +7,9 @@ import com.sadman.inventory.model.InvoiceModel;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,26 +17,30 @@ import java.util.List;
  */
 public class PrintDailyReport {
 
+    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
+    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
+    private double totalSum = 0;
+
     public void generateReport() {
 
         try {
             Document document = new Document();
-            FileOutputStream fs = new FileOutputStream("Report_Daily.pdf");
+
+            Calendar cal = Calendar.getInstance();
+
+            int date = cal.get(Calendar.DATE);
+            int month = cal.get(Calendar.MONTH) + 1;
+            int year = cal.get(Calendar.YEAR);
+
+            FileOutputStream fs = new FileOutputStream("C:/data/Daily-Report"+"-"+year+"-"+month+"-"+date+".pdf");
+
             PdfWriter writer = PdfWriter.getInstance(document, fs);
             document.open();
 
-            Paragraph paragraph = new Paragraph("Daily Report");
-            document.add(paragraph);
-            addEmptyLine(paragraph, 10);
-
-//            PdfContentByte cb = writer.getDirectContent();
-//            BarcodeEAN codeEAN = new BarcodeEAN();
-//            codeEAN.setCodeType(codeEAN.EAN13);
-//            document.add(codeEAN.createImageWithBarcode(cb, BaseColor.BLACK, BaseColor.DARK_GRAY));
-//            addEmptyLine(paragraph, 5);
-
-            PdfPTable table = createTable();
-            document.add(table);
+            addDate(document);
+            addTitle(document);
+            addTable(document);
+            addSummary(document);
 
             document.close();
         } catch (DocumentException | FileNotFoundException ex) {
@@ -41,7 +48,25 @@ public class PrintDailyReport {
         }
     }
 
-    private PdfPTable createTable() {
+    private void addDate(Document document) throws DocumentException {
+        Paragraph preface = new Paragraph();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        Paragraph paragraph = new Paragraph("Date: " + simpleDateFormat.format(new Date()), smallBold);
+        paragraph.setAlignment(Element.ALIGN_RIGHT);
+        preface.add(paragraph);
+        document.add(preface);
+    }
+
+    private void addTitle(Document document) throws DocumentException {
+        Paragraph preface = new Paragraph();
+        Paragraph paragraph = new Paragraph("Daily Report", catFont);
+        paragraph.setAlignment(Element.ALIGN_CENTER);
+        preface.add(paragraph);
+        addEmptyLine(preface,1);
+        document.add(preface);
+    }
+
+    private void addTable(Document document) throws DocumentException {
 
         PdfPTable table = new PdfPTable(3);
         PdfPCell c1 = new PdfPCell(new Phrase("Employee"));
@@ -59,14 +84,35 @@ public class PrintDailyReport {
 
         InvoiceModel invoiceModel = new InvoiceModel();
 
-        List<Invoice> items = invoiceModel.getInvoicesByDate();
+        List<Invoice> invoices = invoiceModel.getInvoicesByDate();
 
-        for (Invoice i : items) {
-            table.addCell(i.getEmployee().getUserName());
-            table.addCell(String.valueOf(i.getPayable()));
-            table.addCell(String.valueOf(i.getDate()));
+        if(!invoices.isEmpty()) {
+            for (Invoice i : invoices) {
+                table.addCell(i.getEmployee().getUserName());
+                table.addCell(String.valueOf(i.getPayable()));
+                table.addCell(String.valueOf(i.getDate()));
+                totalSum += i.getPayable();
+            }
         }
-        return table;
+        else {
+            PdfPCell cell = new PdfPCell();
+            Paragraph paragraph = new Paragraph("No Transaction Today");
+            paragraph.setAlignment(Element.ALIGN_CENTER);
+            cell.setPhrase(paragraph);
+            cell.setColspan(3);
+            table.addCell(cell);
+        }
+
+        document.add(table);
+    }
+
+    private void addSummary(Document document) throws DocumentException {
+        Paragraph preface = new Paragraph();
+        addEmptyLine(preface,2);
+        Paragraph paragraph = new Paragraph("Total Sale: " + totalSum + " BDT", smallBold);
+        paragraph.setAlignment(Element.ALIGN_LEFT);
+        preface.add(paragraph);
+        document.add(preface);
     }
 
     private void addEmptyLine(Paragraph paragraph, int number) {

@@ -16,7 +16,7 @@ public class Test {
 
 
         HibernateUtil.setSessionFactory();
-
+//
         PrintDailyReport printDailyReport = new PrintDailyReport();
         printDailyReport.generateReport();
 
@@ -29,6 +29,6 @@ public class Test {
 //
 //        System.out.println(properties.getProperty("admin.report.email"));
 
-        EmailService.sendEmail();
+//        EmailService.sendEmail();
     }
 }

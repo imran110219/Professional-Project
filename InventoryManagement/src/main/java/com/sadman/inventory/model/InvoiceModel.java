@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import org.hibernate.Session;
 
 import java.util.List;
+import java.util.Optional;
 
 public class InvoiceModel implements InvoiceDao {
 
@@ -33,7 +34,7 @@ public class InvoiceModel implements InvoiceDao {
 
         session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        List<Invoice> invoices = session.createQuery("from Invoice where date > current_date").list();
+        List<Invoice> invoices = session.createQuery("from Invoice where date < current_date").list();
         session.getTransaction().commit();
         session.close();
 

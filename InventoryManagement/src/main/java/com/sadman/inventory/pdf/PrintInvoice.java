@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.Calendar;
 
 public class PrintInvoice {
 
@@ -23,7 +24,18 @@ public class PrintInvoice {
 
         try {
             Document document = new Document();
-            FileOutputStream fs = new FileOutputStream("Report.pdf");
+
+            Calendar cal = Calendar.getInstance();
+
+            int date = cal.get(Calendar.DATE);
+            int month = cal.get(Calendar.MONTH) + 1;
+            int year = cal.get(Calendar.YEAR);
+
+            int hour = cal.get(Calendar.HOUR_OF_DAY);
+            int minute = cal.get(Calendar.MINUTE);
+            int second = cal.get(Calendar.SECOND);
+
+            FileOutputStream fs = new FileOutputStream("C:/data/Report"+"-"+year+"-"+month+"-"+date+"-"+hour+"-"+minute+"-"+second+".pdf");
             PdfWriter writer = PdfWriter.getInstance(document, fs);
             document.open();
 

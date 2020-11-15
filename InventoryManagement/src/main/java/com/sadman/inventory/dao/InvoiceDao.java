@@ -4,6 +4,7 @@ import com.sadman.inventory.entity.Invoice;
 import javafx.collections.ObservableList;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface InvoiceDao {
  

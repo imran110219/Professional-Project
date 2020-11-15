@@ -27,7 +27,7 @@ public class MainApp extends Application {
             stage.setX(event.getScreenX() - xOffset);
             stage.setY(event.getScreenY() - yOffset);
         });
-        EmailService.sendTimerEmail();
+        //EmailService.sendTimerEmail();
         Scene scene = new Scene(root);
         stage.setTitle("Inventory:: Version 1.0");
         stage.getIcons().add(new Image("/images/logo.png"));

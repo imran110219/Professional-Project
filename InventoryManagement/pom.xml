@@ -54,7 +54,6 @@
             <artifactId>spring-context</artifactId>
             <version>5.2.9.RELEASE</version>
         </dependency>
-
     </dependencies>
     
 </project>
