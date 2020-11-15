@@ -16,6 +16,8 @@ public class Employee implements Serializable {
     private String lastName;
     @Column(name = "username")
     private String userName;
+    @Column(name = "email")
+    private String email;
     @Column(name = "password")
     private String password;
     @Column(name = "phone")
@@ -29,32 +31,35 @@ public class Employee implements Serializable {
     
     }
 
-    public Employee(String firstName, String lastName, String userName, String password, String phone, String address) {
+    public Employee(String firstName, String lastName, String userName, String email, String password, String phone, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
+        this.email = email;
         this.password = password;
         this.phone = phone;
         this.address = address;
     }
 
     public Employee(long id, String firstName, String lastName,
-                    String userName, String password, String phone, String address) {
+                    String userName, String email, String password, String phone, String address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
+        this.email = email;
         this.password = password;
         this.phone = phone;
         this.address = address;
     }
 
     public Employee(long id, String firstName, String lastName,
-                    String userName, String password, String phone, String address, String type) {
+                    String userName, String email, String password, String phone, String address, String type) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
+        this.email = email;
         this.password = password;
         this.phone = phone;
         this.address = address;
@@ -91,6 +96,14 @@ public class Employee implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
