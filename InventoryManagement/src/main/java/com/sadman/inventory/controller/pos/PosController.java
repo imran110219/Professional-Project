@@ -218,7 +218,8 @@ public class PosController implements Initializable, ProductInterface {
 
         if (subTotalPrice > 0) {
             paymentButton.setDisable(false);
-            double vat = (double) subTotalPrice * 0.025;
+//            double vat = (double) subTotalPrice * 0.025;
+            double vat = (double) subTotalPrice * 0.0;
             double netPayablePrice = (double) (Math.abs((subTotalPrice + vat) - 0));
 
             subTotalField.setText(String.valueOf(subTotalPrice));
