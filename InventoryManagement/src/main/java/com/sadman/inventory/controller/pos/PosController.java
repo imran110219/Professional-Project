@@ -210,13 +210,17 @@ public class PosController implements Initializable, ProductInterface {
     private void calculation() {
 
         double subTotalPrice = 0.0;
+
+        //double discount = Double.parseDouble(discountField.getText());
+
         subTotalPrice = listTableView.getItems().stream().map(
                 (item) -> item.getTotal()).reduce(subTotalPrice, (accumulator, _item) -> accumulator + _item);
 
         if (subTotalPrice > 0) {
             paymentButton.setDisable(false);
-            double vat = (double) subTotalPrice * 0.025;
-            double netPayablePrice = (double) (Math.abs((subTotalPrice + vat) - 5));
+//            double vat = (double) subTotalPrice * 0.025;
+            double vat = (double) subTotalPrice * 0.0;
+            double netPayablePrice = (double) (Math.abs((subTotalPrice + vat) - 0));
 
             subTotalField.setText(String.valueOf(subTotalPrice));
             vatField.setText(String.valueOf(vat));
@@ -227,11 +231,14 @@ public class PosController implements Initializable, ProductInterface {
     @FXML
     public void paymentAction(ActionEvent event) throws Exception {
 
+        double netPayablePrice = Double.parseDouble(netPayableField.getText().trim());
+        double discount = Double.parseDouble(discountField.getText().trim());
+
         Payment payment = new Payment(
                 Double.parseDouble(subTotalField.getText().trim()),
                 Double.parseDouble(vatField.getText().trim()),
                 Double.parseDouble(discountField.getText().trim()),
-                Double.parseDouble(netPayableField.getText().trim())
+                netPayablePrice-discount
         );
 
         ObservableList<Item> sold = listTableView.getItems();
@@ -239,7 +246,7 @@ public class PosController implements Initializable, ProductInterface {
         FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/Invoice.fxml")));
         InvoiceController controller = new InvoiceController();
         loader.setController(controller);
-        controller.setData(Double.parseDouble(netPayableField.getText().trim()), sold, payment);
+        controller.setData(netPayablePrice-discount, sold, payment);
         Parent root = loader.load();
         Stage stage = new Stage();
         root.setOnMousePressed((MouseEvent e) -> {

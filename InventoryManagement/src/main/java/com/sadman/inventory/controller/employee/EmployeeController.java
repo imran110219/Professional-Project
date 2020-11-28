@@ -236,6 +236,7 @@ public class EmployeeController implements Initializable, EmployeeInterface {
     public void editAction(ActionEvent event) throws Exception {
 
         Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
+        selectedEmployee.setPassword("");
         int selectedEmployeeId = employeeTable.getSelectionModel().getSelectedIndex();
         FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/employee/Edit.fxml")));
         EditController controller = new EditController();

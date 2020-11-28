@@ -15,10 +15,10 @@ public class Test {
         System.out.println(DigestUtils.sha1Hex(password));
 
 
-        HibernateUtil.setSessionFactory();
-//
-        PrintDailyReport printDailyReport = new PrintDailyReport();
-        printDailyReport.generateReport();
+//        HibernateUtil.setSessionFactory();
+////
+//        PrintDailyReport printDailyReport = new PrintDailyReport();
+//        printDailyReport.generateReport();
 
 
 //        Properties properties = new Properties();
