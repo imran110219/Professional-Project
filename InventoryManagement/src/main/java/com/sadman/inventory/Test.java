@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        String password = "7c4a8d09ca3762af61e59520943dc26494f8941b";
+        String password = "123456";
         System.out.println(DigestUtils.sha1Hex(password));
 
 
