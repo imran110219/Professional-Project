@@ -37,7 +37,7 @@ public class EmployeeController implements Initializable, EmployeeInterface {
     @FXML
     private TableColumn<Employee, Long> idColumn;
     @FXML
-    private TableColumn<Employee, String> firstnameColumn, lastnameColumn, usernameColumn,
+    private TableColumn<Employee, String> firstnameColumn, lastnameColumn, usernameColumn, emailColumn,
             passwordColumn, phoneColumn, addressColumn;
     @FXML
     private TextField searchField;
@@ -64,6 +64,7 @@ public class EmployeeController implements Initializable, EmployeeInterface {
         firstnameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastnameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -235,6 +236,7 @@ public class EmployeeController implements Initializable, EmployeeInterface {
     public void editAction(ActionEvent event) throws Exception {
 
         Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
+        selectedEmployee.setPassword("");
         int selectedEmployeeId = employeeTable.getSelectionModel().getSelectedIndex();
         FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/employee/Edit.fxml")));
         EditController controller = new EditController();

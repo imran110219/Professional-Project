@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -62,13 +60,14 @@
                         </HBox>
                         <TableView fx:id="employeeTable" minWidth="-Infinity" prefHeight="300.0" prefWidth="740.0" VBox.vgrow="ALWAYS">
                           <columns>
-                            <TableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
-                            <TableColumn fx:id="firstnameColumn" prefWidth="75.0" text="First Name" />
-                              <TableColumn fx:id="lastnameColumn" prefWidth="75.0" text="Last Name" />
-                              <TableColumn fx:id="usernameColumn" prefWidth="75.0" text="Username" />
-                              <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Password" />
-                              <TableColumn fx:id="phoneColumn" prefWidth="75.0" text="Phone" />
-                              <TableColumn fx:id="addressColumn" prefWidth="75.0" text="Address" />
+                             <TableColumn fx:id="idColumn" prefWidth="30.0" text="Id" />
+                             <TableColumn fx:id="firstnameColumn" prefWidth="75.0" text="First Name" />
+                             <TableColumn fx:id="lastnameColumn" prefWidth="75.0" text="Last Name" />
+                             <TableColumn fx:id="usernameColumn" prefWidth="75.0" text="Username" />
+                             <TableColumn fx:id="emailColumn" prefWidth="75.0" text="Email" />
+                             <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Password" />
+                             <TableColumn fx:id="phoneColumn" prefWidth="75.0" text="Phone" />
+                             <TableColumn fx:id="addressColumn" prefWidth="75.0" text="Address" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

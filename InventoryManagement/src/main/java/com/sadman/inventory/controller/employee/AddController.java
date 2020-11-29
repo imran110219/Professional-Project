@@ -17,7 +17,8 @@ import java.util.ResourceBundle;
 public class AddController implements Initializable, EmployeeInterface {
 
     @FXML
-    private TextField firstField, lastField, usernameField, phoneField;
+    private TextField firstField, lastField, usernameField, emailField, phoneField;
+
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -36,6 +37,7 @@ public class AddController implements Initializable, EmployeeInterface {
         firstField.setText("");
         lastField.setText("");
         usernameField.setText("");
+        emailField.setText("");
         passwordField.setText("");
         phoneField.setText("");
         addressArea.setText("");
@@ -50,6 +52,7 @@ public class AddController implements Initializable, EmployeeInterface {
                     firstField.getText(),
                     lastField.getText(),
                     usernameField.getText(),
+                    emailField.getText(),
                     DigestUtils.sha1Hex(passwordField.getText()),
                     phoneField.getText(),
                     addressArea.getText()
@@ -83,6 +86,10 @@ public class AddController implements Initializable, EmployeeInterface {
 
         if (usernameField.getText() == null || usernameField.getText().length() == 0) {
             errorMessage += "No valid username!\n";
+        }
+
+        if (emailField.getText() == null || emailField.getText().length() == 0) {
+            errorMessage += "No valid email!\n";
         }
 
         if (passwordField.getText() == null || passwordField.getText().length() == 0) {
