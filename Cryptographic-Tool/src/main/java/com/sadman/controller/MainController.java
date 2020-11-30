@@ -6,8 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
@@ -53,6 +55,9 @@ public class MainController implements Initializable {
     @FXML
     private Pane pnlMenus;
 
+    @FXML
+    private Pane pnlPackages;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Node[] nodes = new Node[10];
@@ -79,7 +84,7 @@ public class MainController implements Initializable {
     }
 
 
-    public void handleClicks(ActionEvent actionEvent) {
+    public void handleClicks(ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == btnCustomers) {
             pnlCustomer.setStyle("-fx-background-color : #1620A1");
             pnlCustomer.toFront();
@@ -97,5 +102,15 @@ public class MainController implements Initializable {
             pnlOrders.setStyle("-fx-background-color : #464F67");
             pnlOrders.toFront();
         }
+        if(actionEvent.getSource()==btnPackages)
+        {
+            Label label = new Label("Test");
+            label.setTextFill(Color.WHITE);
+
+//            pnlPackages.setStyle("-fx-background-color : #464F67");
+            pnlPackages.getChildren().add(label);
+            pnlPackages.toFront();
+        }
+
     }
 }
