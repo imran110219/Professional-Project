@@ -14,10 +14,17 @@ public class PrintInvoice {
 
     private final ObservableList<Item> items;
     private final String barcode;
+    private final double discount;
+    private final double netpayable;
 
-    public PrintInvoice(ObservableList<Item> items, String barcode) {
+    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
+    private double totalSum = 0;
+
+    public PrintInvoice(ObservableList<Item> items, String barcode, double discount, double netpayable) {
         this.items = FXCollections.observableArrayList(items);
         this.barcode = barcode;
+        this.discount = discount;
+        this.netpayable = netpayable;
     }
 
     public void generateReport() {
@@ -52,6 +59,7 @@ public class PrintInvoice {
 
             PdfPTable table = createTable();
             document.add(table);
+            addSummary(document);
 
             document.close();
         } catch (DocumentException | FileNotFoundException ex) {
@@ -87,6 +95,19 @@ public class PrintInvoice {
         }
 
         return table;
+    }
+
+    private void addSummary(Document document) throws DocumentException {
+        Paragraph preface = new Paragraph();
+        addEmptyLine(preface,2);
+        Paragraph paragraph1 = new Paragraph("Discount: " + discount + " BDT", smallBold);
+        paragraph1.setAlignment(Element.ALIGN_LEFT);
+        preface.add(paragraph1);
+        addEmptyLine(preface,1);
+        Paragraph paragraph2 = new Paragraph("Netpayable: " + netpayable + " BDT", smallBold);
+        paragraph2.setAlignment(Element.ALIGN_LEFT);
+        preface.add(paragraph2);
+        document.add(preface);
     }
 
     private void addEmptyLine(Paragraph paragraph, int number) {

@@ -97,7 +97,7 @@ public class InvoiceController implements Initializable {
 
             FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/Confirm.fxml")));
             ConfirmController controller = new ConfirmController();
-            controller.setData(retail, items, invoiceId);
+            controller.setData(retail, items, invoiceId, payment.getDiscount());
             loader.setController(controller);
             Parent root = loader.load();
             Scene scene = new Scene(root);

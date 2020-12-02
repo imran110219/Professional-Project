@@ -23,14 +23,18 @@ public class ConfirmController implements Initializable {
     private double retail;
     private ObservableList<Item> items;
     private String barcode;
+    private double discount;
+    private double netpayable;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        retailLabel.setText("Change: $" + retail);
+        retailLabel.setText("Change: " + retail);
 
-        StringBuilder details = new StringBuilder("Item Name\t\t" + "Cost\t\t" + "Quantity\t\t" + "Total\n");
+
+        StringBuilder details = new StringBuilder("Item Name\t\t\t" + "Cost\t\t\t" + "Quantity\t\t\t" + "Total\n");
 
         for (Item i : items) {
+            netpayable += i.getTotal();
             details.append(i.getItemName())
                     .append("\t\t\t")
                     .append(i.getUnitPrice())
@@ -40,20 +44,26 @@ public class ConfirmController implements Initializable {
                     .append(i.getTotal())
                     .append("\n");
         }
+        netpayable = netpayable - discount;
+        details.append("\n");
+        details.append("Discount : " + discount);
+        details.append("\n");
+        details.append("Netpayable : " + netpayable);
 
         billingArea.setText(details.toString());
     }
 
-    public void setData(double retail, ObservableList<Item> items, String barcode) {
+    public void setData(double retail, ObservableList<Item> items, String barcode, double discount) {
         this.retail = retail;
         this.items = FXCollections.observableArrayList(items);
         this.barcode = barcode;
+        this.discount = discount;
     }
 
     @FXML
     public void doneAction(ActionEvent event) {
         billingArea.setText("");
-        PrintInvoice pi = new PrintInvoice(items, barcode);
+        PrintInvoice pi = new PrintInvoice(items, barcode, discount, netpayable);
         pi.generateReport();
         ((Node) (event.getSource())).getScene().getWindow().hide();
     }

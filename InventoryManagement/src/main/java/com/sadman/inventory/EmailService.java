@@ -3,6 +3,8 @@ package com.sadman.inventory;
 import com.sadman.inventory.model.EmployeeModel;
 import com.sadman.inventory.entity.Employee;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -18,7 +20,11 @@ class EmailTask extends TimerTask {
     public void run() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         System.out.println("Email is sending " + dtf.format(LocalDateTime.now()));
-        EmailService.sendEmail();
+        try {
+            EmailService.sendEmail();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
@@ -35,13 +41,19 @@ public class EmailService {
         timer.schedule(new EmailTask(), today.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS)); // period: 1 day
     }
 
-    public static void sendEmail(){
+    public static void sendEmail() throws IOException {
         HibernateUtil.setSessionFactory();
         Employee employee = model.getEmployeeByUsername("admin");
         String email = employee.getEmail();
 
-        final String username = "sadmansobhan11@gmail.com";
-        final String password = "Test#loser11";
+        Properties properties = new Properties();
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        try (InputStream is = loader.getResourceAsStream("application.properties")) {
+            properties.load(is);
+        }
+
+        final String username = properties.getProperty("admin.report.email");
+        final String password = properties.getProperty("admin.report.password");
 
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");

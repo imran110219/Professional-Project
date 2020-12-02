@@ -11,6 +11,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Properties;
+
 public class MainApp extends Application {
 
     private double xOffset = 0;
@@ -36,12 +42,36 @@ public class MainApp extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         System.out.println("Initialize");
-        if (HibernateUtil.setSessionFactory()) {
-            launch(args);
-            HibernateUtil.getSessionFactory().close();
+        if (HibernateUtil.setSessionFactory() ) {
+
+            LocalDate today = LocalDate.now();
+            int currentYear= today.getYear();
+
+            Properties properties = new Properties();
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            try (InputStream is = loader.getResourceAsStream("application.properties")) {
+                properties.load(is);
+            }
+
+            final int validyear = Integer.parseInt(properties.getProperty("validity.year"));
+
+            if(currentYear > validyear){
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Update");
+                    alert.setHeaderText("Please Update System");
+                    alert.setContentText("Send Email to ciphertextbd@gmail.com");
+                    alert.showAndWait();
+                    Platform.exit();
+                });
+            }
+            else {
+                launch(args);
+                HibernateUtil.getSessionFactory().close();
+            }
         } else {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

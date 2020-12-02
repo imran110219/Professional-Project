@@ -6,15 +6,19 @@ import com.sadman.inventory.pdf.PrintDailyReport;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        String password = "123456";
-        System.out.println(DigestUtils.sha1Hex(password));
-
-
+//        String password = "123456";
+//        System.out.println(DigestUtils.sha1Hex(password));
+//
+//
 //        HibernateUtil.setSessionFactory();
 ////
 //        PrintDailyReport printDailyReport = new PrintDailyReport();
@@ -29,6 +33,18 @@ public class Test {
 //
 //        System.out.println(properties.getProperty("admin.report.email"));
 
-//        EmailService.sendEmail();
+//        EmailService.sendEmail(); System.currentTimeMillis()
+
+        LocalDate today = LocalDate.now();
+        int currentDate= today.getDayOfMonth();
+        int currentMonth= today.getMonthValue();
+        int currentYear= today.getYear();
+
+        int year = 2019;
+
+        System.out.println(currentYear + "      " + year);
+        if(currentYear > year){
+            System.out.println("Ok");
+        }
     }
 }

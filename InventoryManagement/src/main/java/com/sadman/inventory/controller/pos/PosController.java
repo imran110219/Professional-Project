@@ -243,6 +243,7 @@ public class PosController implements Initializable, ProductInterface {
 
         ObservableList<Item> sold = listTableView.getItems();
 
+
         FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/Invoice.fxml")));
         InvoiceController controller = new InvoiceController();
         loader.setController(controller);
