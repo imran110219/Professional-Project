@@ -4,10 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,101 +14,93 @@ import java.util.ResourceBundle;
 /**
  * @author Sadman
  */
-public class MainController implements Initializable {
+public class DashboardController implements Initializable {
+
+//    @FXML
+//    private VBox pnItems = null;
 
     @FXML
-    private VBox pnItems = null;
-    @FXML
-    private Button btnOverview;
+    private Button btnDashboard;
 
     @FXML
-    private Button btnOrders;
+    private Button btnAlgorithm;
 
     @FXML
-    private Button btnCustomers;
+    private Button btnCerficate;
 
     @FXML
-    private Button btnMenus;
+    private Button btnSigning;
 
     @FXML
-    private Button btnPackages;
+    private Button btnEncrypt;
 
     @FXML
-    private Button btnSettings;
+    private Button btnMail;
 
     @FXML
-    private Button btnSignout;
+    private Pane pnlDashboard;
 
     @FXML
-    private Pane pnlCustomer;
+    private Pane pnlAlgorithm;
 
     @FXML
-    private Pane pnlOrders;
+    private Pane pnlCerficate;
 
     @FXML
-    private Pane pnlOverview;
+    private Pane pnlSigning;
 
     @FXML
-    private Pane pnlMenus;
+    private Pane pnlEncrypt;
 
     @FXML
-    private Pane pnlPackages;
+    private Pane pnlMail;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Node[] nodes = new Node[10];
-        for (int i = 0; i < nodes.length; i++) {
-            try {
-
-                final int j = i;
-                nodes[i] = FXMLLoader.load(getClass().getResource("/view/item.fxml"));
-
-                //give the items some effect
-
-                nodes[i].setOnMouseEntered(event -> {
-                    nodes[j].setStyle("-fx-background-color : #0A0E3F");
-                });
-                nodes[i].setOnMouseExited(event -> {
-                    nodes[j].setStyle("-fx-background-color : #02030A");
-                });
-                pnItems.getChildren().add(nodes[i]);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        System.out.println("Initialize");
+        Pane dashboardPane = null;
+        try {
+            dashboardPane = FXMLLoader.load(getClass().getResource("/view/dashboard.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
+        pnlDashboard.getChildren().setAll(dashboardPane);
+        pnlDashboard.setStyle("-fx-background-color : #1620A1");
+        pnlDashboard.toFront();
     }
 
 
     public void handleClicks(ActionEvent actionEvent) throws IOException {
-        if (actionEvent.getSource() == btnCustomers) {
-            pnlCustomer.setStyle("-fx-background-color : #1620A1");
-            pnlCustomer.toFront();
+        if (actionEvent.getSource() == btnDashboard) {
+            Pane dashboardPane =  FXMLLoader.load(getClass().getResource("/view/dashboard.fxml"));
+            pnlDashboard.getChildren().setAll(dashboardPane);
+            pnlDashboard.setStyle("-fx-background-color : #1620A1");
+            pnlDashboard.toFront();
         }
-        if (actionEvent.getSource() == btnMenus) {
-            pnlMenus.setStyle("-fx-background-color : #53639F");
-            pnlMenus.toFront();
+        if (actionEvent.getSource() == btnAlgorithm) {
+            Pane algorithmPane =  FXMLLoader.load(getClass().getResource("/view/algorithm.fxml"));
+            pnlAlgorithm.getChildren().setAll(algorithmPane);
+            pnlAlgorithm.setStyle("-fx-background-color : #151517");
+            pnlAlgorithm.toFront();
         }
-        if (actionEvent.getSource() == btnOverview) {
-            pnlOverview.setStyle("-fx-background-color : #02030A");
-            pnlOverview.toFront();
+        if (actionEvent.getSource() == btnCerficate) {
+            pnlCerficate.setStyle("-fx-background-color : #02030A");
+            pnlCerficate.toFront();
         }
-        if(actionEvent.getSource()==btnOrders)
+        if(actionEvent.getSource()==btnSigning)
         {
-            pnlOrders.setStyle("-fx-background-color : #464F67");
-            pnlOrders.toFront();
+            pnlSigning.setStyle("-fx-background-color : #896d6c");
+            pnlSigning.toFront();
         }
-        if(actionEvent.getSource()==btnPackages)
+        if(actionEvent.getSource()==btnEncrypt)
         {
-//            Label label = new Label("Test");
-//            label.setTextFill(Color.WHITE);
-
-//            pnlPackages.setStyle("-fx-background-color : #464F67");
-//            pnlPackages.getChildren().add(label);
-            Pane newLoadedPane =  FXMLLoader.load(getClass().getResource("/view/package.fxml"));
-            pnlPackages.getChildren().setAll(newLoadedPane);
-            pnlPackages.toFront();
+            pnlEncrypt.setStyle("-fx-background-color : #d9cd0f");
+            pnlEncrypt.toFront();
         }
-
+        if(actionEvent.getSource()==btnMail)
+        {
+            pnlMail.setStyle("-fx-background-color : #f11426");
+            pnlMail.toFront();
+        }
     }
 }

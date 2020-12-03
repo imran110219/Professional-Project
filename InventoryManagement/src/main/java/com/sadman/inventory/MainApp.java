@@ -1,5 +1,7 @@
 package com.sadman.inventory;
 
+import com.sadman.inventory.util.HibernateUtil;
+import com.sadman.inventory.util.Util;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +14,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Properties;
 
 public class MainApp extends Application {
 
@@ -44,26 +42,18 @@ public class MainApp extends Application {
 
     public static void main(String[] args) throws IOException {
 
-        System.out.println("Initialize");
         if (HibernateUtil.setSessionFactory() ) {
 
-            LocalDate today = LocalDate.now();
-            int currentYear= today.getYear();
+            int currentYear= Util.getCurrentYear();
 
-            Properties properties = new Properties();
-            ClassLoader loader = Thread.currentThread().getContextClassLoader();
-            try (InputStream is = loader.getResourceAsStream("application.properties")) {
-                properties.load(is);
-            }
+            final int validYear = Integer.parseInt(Util.readApplicationProperty("validity.year"));
 
-            final int validyear = Integer.parseInt(properties.getProperty("validity.year"));
-
-            if(currentYear > validyear){
+            if(currentYear > validYear){
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Update");
                     alert.setHeaderText("Please Update System");
-                    alert.setContentText("Send Email to ciphertextbd@gmail.com");
+                    alert.setContentText("Please Send Email to ciphertextbd@gmail.com");
                     alert.showAndWait();
                     Platform.exit();
                 });
@@ -75,9 +65,9 @@ public class MainApp extends Application {
         } else {
             Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("An error has occured!");
-                alert.setHeaderText("Database Connection Error!");
-                alert.setContentText("Please contact the developer");
+                alert.setTitle("Error");
+                alert.setHeaderText("Database Connection Error");
+                alert.setContentText("Please Send Email to ciphertextbd@gmail.com");
                 alert.showAndWait();
                 Platform.exit();
             });

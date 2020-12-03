@@ -1,6 +1,6 @@
 package com.sadman.inventory.model;
 
-import com.sadman.inventory.HibernateUtil;
+import com.sadman.inventory.util.HibernateUtil;
 import com.sadman.inventory.dao.SaleDao;
 import com.sadman.inventory.entity.Sale;
 import javafx.collections.FXCollections;

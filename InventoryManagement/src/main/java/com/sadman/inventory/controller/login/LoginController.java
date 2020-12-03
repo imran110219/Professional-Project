@@ -18,11 +18,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.log4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
+
+    final static Logger logger = Logger.getLogger(LoginController.class);
 
     @FXML
     private TextField usernameField, passwordField;
@@ -61,41 +64,46 @@ public class LoginController implements Initializable {
 
     @FXML
     public void loginAction(ActionEvent event) throws Exception {
-
         authenticate(event);
     }
 
-    private void authenticate(Event event) throws Exception {
-        if (validateInput()) {
+    private void authenticate(Event event) {
 
-            String username = usernameField.getText().trim();
-            String password = DigestUtils.sha1Hex((passwordField.getText().trim()));
+        try {
+            if (validateInput()) {
 
-            if (model.checkUser(username)) {
+                String username = usernameField.getText().trim();
+                String password = DigestUtils.sha1Hex((passwordField.getText().trim()));
 
-                if (model.checkPassword(username, password)) {
+                if (model.checkUser(username)) {
 
-                    ((Node) (event.getSource())).getScene().getWindow().hide();
+                    if (model.checkPassword(username, password)) {
 
-                    String type = model.getEmployeeType(username);
+                        ((Node) (event.getSource())).getScene().getWindow().hide();
 
-                    switch (type) {
-                        case "admin":
-                            windows("/fxml/Admin.fxml", "Admin Panel");
-                            break;
+                        String type = model.getEmployeeType(username);
 
-                        case "employee":
-                            windows("/fxml/Pos.fxml", "Point of Sales");
-                            break;
+                        switch (type) {
+                            case "admin":
+                                windows("/fxml/Admin1.fxml", "Admin Panel");
+                                break;
+
+                            case "employee":
+                                windows("/fxml/Pos.fxml", "Point of Sales");
+                                break;
+                        }
+                    } else {
+                        passwordField.setText("");
+                        errorLabel.setText("Wrong Password!");
                     }
                 } else {
-                    passwordField.setText("");
-                    errorLabel.setText("Wrong Password!");
+                    resetFields();
+                    errorLabel.setText("User doesn't exist!");
                 }
-            } else {
-                resetFields();
-                errorLabel.setText("User doesn't exist!");
             }
+        }
+        catch (Exception e){
+            logger.warn("authenticate() " + e.getMessage());
         }
     }
 

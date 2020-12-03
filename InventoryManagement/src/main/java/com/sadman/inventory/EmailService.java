@@ -2,6 +2,8 @@ package com.sadman.inventory;
 
 import com.sadman.inventory.model.EmployeeModel;
 import com.sadman.inventory.entity.Employee;
+import com.sadman.inventory.util.HibernateUtil;
+import com.sadman.inventory.util.Util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,14 +48,9 @@ public class EmailService {
         Employee employee = model.getEmployeeByUsername("admin");
         String email = employee.getEmail();
 
-        Properties properties = new Properties();
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        try (InputStream is = loader.getResourceAsStream("application.properties")) {
-            properties.load(is);
-        }
 
-        final String username = properties.getProperty("admin.report.email");
-        final String password = properties.getProperty("admin.report.password");
+        final String username = Util.readApplicationProperty("admin.report.email");
+        final String password = Util.readApplicationProperty("admin.report.password");
 
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");

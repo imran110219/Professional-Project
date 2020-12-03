@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="554.0" prefWidth="793.0">
+    <children>
+        <Label layoutX="57.0" layoutY="25.0" text="Dashboard" textFill="#e7e5e5">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+    </children>
+</Pane>

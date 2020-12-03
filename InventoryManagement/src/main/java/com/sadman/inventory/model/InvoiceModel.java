@@ -1,6 +1,6 @@
 package com.sadman.inventory.model;
 
-import com.sadman.inventory.HibernateUtil;
+import com.sadman.inventory.util.HibernateUtil;
 import com.sadman.inventory.dao.InvoiceDao;
 import com.sadman.inventory.entity.Invoice;
 import javafx.collections.FXCollections;
@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import org.hibernate.Session;
 
 import java.util.List;
-import java.util.Optional;
 
 public class InvoiceModel implements InvoiceDao {
 

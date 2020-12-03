@@ -232,12 +232,24 @@ public class PosController implements Initializable, ProductInterface {
     public void paymentAction(ActionEvent event) throws Exception {
 
         double netPayablePrice = Double.parseDouble(netPayableField.getText().trim());
-        double discount = Double.parseDouble(discountField.getText().trim());
+
+        /* Calculate percentage */
+        double discount;
+        String discountText = discountField.getText().trim();
+
+        if(discountText.charAt(discountText.length()-1) == '%'){
+            discount = Double.parseDouble(discountText.substring(0,discountText.length()-1));
+            discount = (netPayablePrice*discount)/100;
+
+        }
+        else {
+            discount = Double.parseDouble(discountText);
+        }
 
         Payment payment = new Payment(
                 Double.parseDouble(subTotalField.getText().trim()),
                 Double.parseDouble(vatField.getText().trim()),
-                Double.parseDouble(discountField.getText().trim()),
+                discount,
                 netPayablePrice-discount
         );
 

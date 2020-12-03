@@ -3,6 +3,7 @@ package com.sadman.inventory.pdf;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import com.sadman.inventory.entity.Item;
+import com.sadman.inventory.util.Util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -107,6 +108,10 @@ public class PrintInvoice {
         Paragraph paragraph2 = new Paragraph("Netpayable: " + netpayable + " BDT", smallBold);
         paragraph2.setAlignment(Element.ALIGN_LEFT);
         preface.add(paragraph2);
+        addEmptyLine(preface,1);
+        Paragraph paragraph3 = new Paragraph("In Word: " + Util.convertNumberToWord((int)netpayable) + " BDT", smallBold);
+        paragraph3.setAlignment(Element.ALIGN_LEFT);
+        preface.add(paragraph3);
         document.add(preface);
     }
 
