@@ -85,7 +85,7 @@ public class LoginController implements Initializable {
 
                         switch (type) {
                             case "admin":
-                                windows("/fxml/Admin1.fxml", "Admin Panel");
+                                windows("/fxml/Admin.fxml", "Admin Panel");
                                 break;
 
                             case "employee":

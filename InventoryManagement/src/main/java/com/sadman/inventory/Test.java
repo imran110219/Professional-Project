@@ -20,7 +20,7 @@ public class Test {
         System.out.println(DigestUtils.sha1Hex(password));
 
 
-        System.out.println(Util.convertNumberToWord(213213));
+//        System.out.println(Util.convertNumberToWord(213213));
 //        HibernateUtil.setSessionFactory();
 
 //        PrintDailyReport printDailyReport = new PrintDailyReport();

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="InventoryManagement.jnlp">
+  <information>
+    <title>InventoryManagement</title>
+    <vendor>Unknown</vendor>
+    <description>InventoryManagement</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="FastInfoset-1.2.15.jar" size="311876" download="eager" />
+    <jar href="InventoryManagement.jar" size="665239" download="eager" />
+    <jar href="activation-1.1.jar" size="62983" download="eager" />
+    <jar href="antlr-2.7.7.jar" size="445288" download="eager" />
+    <jar href="byte-buddy-1.10.2.jar" size="3343051" download="eager" />
+    <jar href="classmate-1.5.1.jar" size="67815" download="eager" />
+    <jar href="commons-codec-1.10.jar" size="284184" download="eager" />
+    <jar href="dom4j-2.1.1.jar" size="323600" download="eager" />
+    <jar href="hibernate-commons-annotations-5.1.0.Final.jar" size="76204" download="eager" />
+    <jar href="hibernate-core-5.4.10.Final.jar" size="7159064" download="eager" />
+    <jar href="istack-commons-runtime-3.0.7.jar" size="25523" download="eager" />
+    <jar href="itextpdf-5.5.11.jar" size="2309235" download="eager" />
+    <jar href="jandex-2.1.1.Final.jar" size="195286" download="eager" />
+    <jar href="javafx-base-11-win.jar" size="750040" download="eager" />
+    <jar href="javafx-base-11.jar" size="302" download="eager" />
+    <jar href="javafx-controls-11-win.jar" size="2511103" download="eager" />
+    <jar href="javafx-controls-11.jar" size="306" download="eager" />
+    <jar href="javafx-fxml-11-win.jar" size="127394" download="eager" />
+    <jar href="javafx-fxml-11.jar" size="302" download="eager" />
+    <jar href="javafx-graphics-11-win.jar" size="6016908" download="eager" />
+    <jar href="javafx-graphics-11.jar" size="306" download="eager" />
+    <jar href="javassist-3.24.0-GA.jar" size="777669" download="eager" />
+    <jar href="javax.activation-api-1.2.0.jar" size="56674" download="eager" />
+    <jar href="javax.persistence-api-2.2.jar" size="164556" download="eager" />
+    <jar href="jaxb-api-2.3.1.jar" size="128076" download="eager" />
+    <jar href="jaxb-runtime-2.3.1.jar" size="1093432" download="eager" />
+    <jar href="jboss-logging-3.3.2.Final.jar" size="66469" download="eager" />
+    <jar href="jboss-transaction-api_1.2_spec-1.1.1.Final.jar" size="26290" download="eager" />
+    <jar href="log4j-1.2.17.jar" size="489884" download="eager" />
+    <jar href="mail-1.4.jar" size="388864" download="eager" />
+    <jar href="mysql-connector-java-8.0.16.jar" size="2293144" download="eager" />
+    <jar href="protobuf-java-3.6.1.jar" size="1421323" download="eager" />
+    <jar href="spring-aop-5.2.9.RELEASE.jar" size="372753" download="eager" />
+    <jar href="spring-beans-5.2.9.RELEASE.jar" size="688380" download="eager" />
+    <jar href="spring-context-5.2.9.RELEASE.jar" size="1229356" download="eager" />
+    <jar href="spring-core-5.2.9.RELEASE.jar" size="1442482" download="eager" />
+    <jar href="spring-expression-5.2.9.RELEASE.jar" size="282217" download="eager" />
+    <jar href="spring-jcl-5.2.9.RELEASE.jar" size="23962" download="eager" />
+    <jar href="stax-ex-1.8.jar" size="36073" download="eager" />
+    <jar href="txw2-2.3.1.jar" size="70288" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="com.sadman.inventory.MainApp"  name="InventoryManagement" />
+  <update check="background"/>
+</jnlp>
