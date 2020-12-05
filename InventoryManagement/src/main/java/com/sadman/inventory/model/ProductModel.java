@@ -1,5 +1,8 @@
 package com.sadman.inventory.model;
 
+import com.sadman.inventory.entity.Category;
+import com.sadman.inventory.entity.Invoice;
+import com.sadman.inventory.entity.Supplier;
 import com.sadman.inventory.util.HibernateUtil;
 import com.sadman.inventory.dao.ProductDao;
 import com.sadman.inventory.entity.Product;
@@ -9,6 +12,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
@@ -122,5 +126,35 @@ public class ProductModel implements ProductDao {
         session.close();
         
         return list;
+    }
+
+    @Override
+    public List<Product> getProductListByCategory(Category category){
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        long id = category.getId();
+        Criteria crit = session.createCriteria(Product.class);
+        crit.add(Restrictions.eq("category.id",id));
+        List<Product> products = crit.list();
+        session.getTransaction().commit();
+        session.close();
+
+        return products;
+    }
+
+    @Override
+    public List<Product> getProductListBySupplier(Supplier supplier){
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        long id = supplier.getId();
+        Criteria crit = session.createCriteria(Product.class);
+        crit.add(Restrictions.eq("supplier.id",id));
+        List<Product> products = crit.list();
+        session.getTransaction().commit();
+        session.close();
+
+        return products;
     }
 }

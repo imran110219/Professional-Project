@@ -1,7 +1,10 @@
 package com.sadman.inventory.dao;
 
+import com.sadman.inventory.entity.Product;
 import com.sadman.inventory.entity.Sale;
 import javafx.collections.ObservableList;
+
+import java.util.List;
 
 public interface SaleDao {
 

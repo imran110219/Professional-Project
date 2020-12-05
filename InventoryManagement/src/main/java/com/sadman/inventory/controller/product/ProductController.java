@@ -315,11 +315,21 @@ public class ProductController implements Initializable, ProductInterface {
         if (result.get() == ButtonType.OK) {
             Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
 
-            model.deleteProduct(selectedProduct);
-            PRODUCTLIST.remove(selectedProduct);
+            if(salesModel.getSaleByProductId(selectedProduct.getId()).isEmpty()) {
+                model.deleteProduct(selectedProduct);
+                PRODUCTLIST.remove(selectedProduct);
+                productTable.getSelectionModel().clearSelection();
+            }
+            else{
+                Alert deleteAlert = new Alert(Alert.AlertType.ERROR);
+                deleteAlert.setTitle("Delete Error");
+                deleteAlert.setHeaderText("Unable to delete Product");
+                deleteAlert.setContentText("Sales Table contains " + selectedProduct.getProductName());
+
+                Optional<ButtonType> errorResult = deleteAlert.showAndWait();
+                if (errorResult.get() == ButtonType.OK)
+                    deleteAlert.close();
+            }
         }
-
-        productTable.getSelectionModel().clearSelection();
     }
-
 }

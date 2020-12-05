@@ -38,8 +38,8 @@ public class AddController implements Initializable, ProductInterface {
         productModel = new ProductModel();
         categoryModel = new CategoryModel();
         supplierModel = new SupplierModel();
-        ObservableList<String> categoryList = FXCollections.observableArrayList(categoryModel.getTypes());
-        ObservableList<String> supplierList = FXCollections.observableArrayList(supplierModel.getNames());
+        ObservableList<Category> categoryList = FXCollections.observableArrayList(categoryModel.getCategories());
+        ObservableList<Supplier> supplierList = FXCollections.observableArrayList(supplierModel.getSuppliers());
         categoryBox.setItems(categoryList);
         supplierBox.setItems(supplierList);
     }
@@ -49,8 +49,9 @@ public class AddController implements Initializable, ProductInterface {
 
         if (validateInput()) {
 
-            Category category = categoryModel.getCategory(categoryBox.getSelectionModel().getSelectedIndex() + 1);
-            Supplier supplier = supplierModel.getSupplier(supplierBox.getSelectionModel().getSelectedIndex() + 1);
+            Category category = (Category) categoryBox.getSelectionModel().getSelectedItem();
+            Supplier supplier = (Supplier) supplierBox.getSelectionModel().getSelectedItem();
+
             Product product = new Product(
                     nameField.getText(),
                     Double.parseDouble(priceField.getText()),

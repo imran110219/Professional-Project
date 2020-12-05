@@ -1,5 +1,6 @@
 package com.sadman.inventory.controller.sales;
 
+import com.sadman.inventory.entity.Category;
 import com.sadman.inventory.entity.Sale;
 import com.sadman.inventory.interfaces.SaleInterface;
 import com.sadman.inventory.model.SalesModel;
@@ -15,10 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +26,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class SalesController implements Initializable, SaleInterface {
@@ -208,5 +207,19 @@ public class SalesController implements Initializable, SaleInterface {
 
     @FXML
     public void deleteAction(ActionEvent event) throws Exception {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete");
+        alert.setHeaderText("Delete Sale");
+        alert.setContentText("Are you sure?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Sale selectedSale = salesTable.getSelectionModel().getSelectedItem();
+
+            model.deleteSale(selectedSale);
+            SALELIST.remove(selectedSale);
+        }
+
+        salesTable.getSelectionModel().clearSelection();
     }
 }

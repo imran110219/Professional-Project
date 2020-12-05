@@ -1,7 +1,11 @@
 package com.sadman.inventory.dao;
 
+import com.sadman.inventory.entity.Category;
 import com.sadman.inventory.entity.Product;
+import com.sadman.inventory.entity.Supplier;
 import javafx.collections.ObservableList;
+
+import java.util.List;
 
 public interface ProductDao {
     
@@ -14,4 +18,6 @@ public interface ProductDao {
     public void deleteProduct(Product product);
     public ObservableList<String> getProductNames();
     public void increaseProduct(Product product);
+    public List<Product> getProductListByCategory(Category category);
+    public List<Product> getProductListBySupplier(Supplier supplier);
 }

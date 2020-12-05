@@ -2,6 +2,7 @@ package com.sadman.inventory.controller.supplier;
 
 import com.sadman.inventory.entity.Supplier;
 import com.sadman.inventory.interfaces.SupplierInterface;
+import com.sadman.inventory.model.ProductModel;
 import com.sadman.inventory.model.SupplierModel;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
@@ -41,6 +42,7 @@ public class SupplierController implements Initializable, SupplierInterface {
     @FXML
     private Button editButton, deleteButton;
     private SupplierModel model;
+    private ProductModel productModel;
     
     private double xOffset = 0;
     private double yOffset = 0;
@@ -53,6 +55,7 @@ public class SupplierController implements Initializable, SupplierInterface {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         model = new SupplierModel();
+        productModel = new ProductModel();
         
         drawerAction();
         loadData();
@@ -257,19 +260,29 @@ public class SupplierController implements Initializable, SupplierInterface {
     public void deleteAction(ActionEvent event) {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Remove");
-        alert.setHeaderText("Remove Supplier");
+        alert.setTitle("Delete");
+        alert.setHeaderText("Delete Supplier");
         alert.setContentText("Are you sure?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             Supplier selectedSupplier = supplierTable.getSelectionModel().getSelectedItem();
 
-            model.deleteSuplier(selectedSupplier);
-            SUPPLIERLIST.remove(selectedSupplier);
-        }
+            if(productModel.getProductListBySupplier(selectedSupplier).isEmpty()) {
+                model.deleteSuplier(selectedSupplier);
+                SUPPLIERLIST.remove(selectedSupplier);
+                supplierTable.getSelectionModel().clearSelection();
+            }
+            else{
+                Alert deleteAlert = new Alert(Alert.AlertType.ERROR);
+                deleteAlert.setTitle("Delete Error");
+                deleteAlert.setHeaderText("Unable to delete Supplier");
+                deleteAlert.setContentText("Product Table contains " + selectedSupplier.getName());
 
-        supplierTable.getSelectionModel().clearSelection();
+                Optional<ButtonType> errorResult = deleteAlert.showAndWait();
+                if (errorResult.get() == ButtonType.OK)
+                    deleteAlert.close();
+            }
+        }
     }
-    
 }

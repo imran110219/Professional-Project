@@ -65,8 +65,8 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `phone`, `address`, `type`) VALUES
-(1, 'john', 'cena', 'admin', 'admin@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', '0099887766', 'New York, USA', 'admin'),
-(2, 'Martha', 'Jones', 'user', 'user@gmail.com', '12dea96fec20593566ab75692c9949596833adc9', '123456789', 'Seattle', 'employee');
+(1, 'john', 'cena', 'admin', 'admin@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '0099887766', 'New York, USA', 'admin'),
+(2, 'Martha', 'Jones', 'user', 'user@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '123456789', 'Seattle', 'employee');
 
 -- --------------------------------------------------------
 

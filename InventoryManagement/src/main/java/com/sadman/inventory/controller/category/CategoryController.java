@@ -1,8 +1,10 @@
 package com.sadman.inventory.controller.category;
 
 import com.sadman.inventory.entity.Category;
+import com.sadman.inventory.entity.Product;
 import com.sadman.inventory.interfaces.CategoryInterface;
 import com.sadman.inventory.model.CategoryModel;
+import com.sadman.inventory.model.ProductModel;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
 import javafx.collections.transformation.FilteredList;
@@ -25,6 +27,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -41,6 +44,7 @@ public class CategoryController implements Initializable, CategoryInterface {
     @FXML
     private Button editButton, deleteButton;
     private CategoryModel model;
+    private ProductModel productModel;
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -53,6 +57,7 @@ public class CategoryController implements Initializable, CategoryInterface {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         model = new CategoryModel();
+        productModel = new ProductModel();
 
         drawerAction();
         loadData();
@@ -254,17 +259,28 @@ public class CategoryController implements Initializable, CategoryInterface {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete");
-        alert.setHeaderText("Delete Product");
+        alert.setHeaderText("Delete Category");
         alert.setContentText("Are you sure?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             Category selectedCategory = categoryTable.getSelectionModel().getSelectedItem();
 
-            model.deleteCategory(selectedCategory);
-            CATEGORYLIST.remove(selectedCategory);
-        }
+            if(productModel.getProductListByCategory(selectedCategory).isEmpty()) {
+                model.deleteCategory(selectedCategory);
+                CATEGORYLIST.remove(selectedCategory);
+                categoryTable.getSelectionModel().clearSelection();
+            }
+            else{
+                Alert deleteAlert = new Alert(Alert.AlertType.ERROR);
+                deleteAlert.setTitle("Delete Error");
+                deleteAlert.setHeaderText("Unable to delete Cataegory");
+                deleteAlert.setContentText("Product Table contains " + selectedCategory.getType());
 
-        categoryTable.getSelectionModel().clearSelection();
+                Optional<ButtonType> errorResult = deleteAlert.showAndWait();
+                if (errorResult.get() == ButtonType.OK)
+                    deleteAlert.close();
+            }
+        }
     }
 }
