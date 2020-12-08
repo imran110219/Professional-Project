@@ -1,11 +1,13 @@
 package com.sadman.inventory.model;
 
+import com.sadman.inventory.entity.Category;
 import com.sadman.inventory.util.HibernateUtil;
 import com.sadman.inventory.dao.SupplierDao;
 import com.sadman.inventory.entity.Supplier;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 
@@ -85,5 +87,19 @@ public class SupplierModel implements SupplierDao {
         session.getTransaction().commit();
         session.close();
         return list;
+    }
+
+    @Override
+    public boolean checkSupplier(String name) {
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("from Supplier where name = :name");
+        query.setParameter("name", name);
+        Supplier supplier = (Supplier) query.uniqueResult();
+        session.getTransaction().commit();
+        session.close();
+
+        return supplier != null;
     }
 }

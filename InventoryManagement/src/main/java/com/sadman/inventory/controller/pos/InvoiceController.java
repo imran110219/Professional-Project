@@ -111,7 +111,7 @@ public class InvoiceController implements Initializable {
                 stage.setY(e.getScreenY() - yOffset);
             });
             stage.setTitle("Confirm");
-            stage.getIcons().add(new Image("/images/logo.png"));
+            stage.getIcons().add(new Image("/images/iconlogo.png"));
             stage.setScene(scene);
             stage.show();
         }

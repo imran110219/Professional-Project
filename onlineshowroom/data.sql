@@ -3,8 +3,8 @@ INSERT  INTO `roles`(`role_id`,`role`) VALUES
 (2,'USER');
 
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `username`, `email`, `password`, `phone`, `active`) VALUES
-(1, 'john', 'cena', 'admin', 'admin@gmail.com', '$2a$10$RZEFzUPZfZ6QSPZUsYZ8RuiNDG5Y8YYhOm4kp.R0aMoz0W/fb3Rym', '0099887766', ''),
-(2, 'Martha', 'Jones', 'user', 'user@gmail.com', '$2a$10$RZEFzUPZfZ6QSPZUsYZ8RuiNDG5Y8YYhOm4kp.R0aMoz0W/fb3Rym', '123456789', '');
+(1, 'john', 'cena', 'admin', 'admin@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '0099887766', ''),
+(2, 'Martha', 'Jones', 'user', 'user@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', '123456789', '');
 
 INSERT  INTO `user_role`(`user_id`,`role_id`) VALUES 
 (1,1),

@@ -91,6 +91,10 @@ public class EditController implements Initializable, SupplierInterface {
             errorMessage += "No valid first name!\n";
         }
 
+        else if (supplierModel.checkSupplier(supplierField.getText())) {
+            errorMessage += "Duplicate supplier name!\n";
+        }
+
         if (phoneField.getText() == null || phoneField.getText().length() == 0) {
             errorMessage += "No valid phone number!\n";
         }

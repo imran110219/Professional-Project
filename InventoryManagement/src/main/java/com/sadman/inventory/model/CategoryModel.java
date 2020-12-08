@@ -1,11 +1,13 @@
 package com.sadman.inventory.model;
 
+import com.sadman.inventory.entity.Employee;
 import com.sadman.inventory.util.HibernateUtil;
 import com.sadman.inventory.dao.CategoryDao;
 import com.sadman.inventory.entity.Category;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 
@@ -84,6 +86,20 @@ public class CategoryModel implements CategoryDao {
         session.getTransaction().commit();
         session.close();
         return list;
+    }
+
+    @Override
+    public boolean checkCategory(String type) {
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("from Category where type = :type");
+        query.setParameter("type", type);
+        Category category = (Category) query.uniqueResult();
+        session.getTransaction().commit();
+        session.close();
+
+        return category != null;
     }
 
 }

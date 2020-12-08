@@ -18,14 +18,14 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.log4j.Logger;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
-    final static Logger logger = Logger.getLogger(LoginController.class);
+//    final static Logger logger = Logger.getLogger(LoginController.class);
 
     @FXML
     private TextField usernameField, passwordField;
@@ -103,17 +103,18 @@ public class LoginController implements Initializable {
             }
         }
         catch (Exception e){
-            logger.warn("authenticate() " + e.getMessage());
+//            logger.error("authenticate() " + e.toString());
+            e.printStackTrace();
         }
     }
 
-    private void windows(String path, String title) throws Exception {
+    private void windows(String path, String title) throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource(path));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setTitle(title);
-        stage.getIcons().add(new Image("/images/logo.png"));
+        stage.getIcons().add(new Image("/images/iconlogo.png"));
         stage.setScene(scene);
         stage.show();
     }

@@ -274,7 +274,7 @@ public class PosController implements Initializable, ProductInterface {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Payment");
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.getIcons().add(new Image("/images/logo.png"));
+        stage.getIcons().add(new Image("/images/iconlogo.png"));
         stage.setScene(scene);
         stage.showAndWait();
 
@@ -341,7 +341,7 @@ public class PosController implements Initializable, ProductInterface {
 
         Scene scene = new Scene(root);
         stage.setTitle("Inventory:: Version 1.0");
-        stage.getIcons().add(new Image("/images/logo.png"));
+        stage.getIcons().add(new Image("/images/iconlogo.png"));
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();

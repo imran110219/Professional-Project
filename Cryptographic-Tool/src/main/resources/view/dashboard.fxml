@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <Pane prefHeight="554.0" prefWidth="793.0">
     <children>
@@ -11,5 +11,6 @@
                 <Font size="24.0" />
             </font>
         </Label>
+        <Button layoutX="744.0" layoutY="5.0" onAction="#closeAction"  mnemonicParsing="false" text="Close" />
     </children>
 </Pane>

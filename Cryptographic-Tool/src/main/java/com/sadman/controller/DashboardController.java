@@ -1,10 +1,14 @@
 package com.sadman.controller;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -16,91 +20,107 @@ import java.util.ResourceBundle;
  */
 public class DashboardController implements Initializable {
 
-//    @FXML
-//    private VBox pnItems = null;
+    @FXML
+    private ComboBox<String> typeCBX;
 
     @FXML
-    private Button btnDashboard;
+    private ComboBox<String> nameCBX;
 
     @FXML
-    private Button btnAlgorithm;
+    private Pane pnlAES;
 
     @FXML
-    private Button btnCerficate;
+    private Pane pnlDES;
 
     @FXML
-    private Button btnSigning;
-
-    @FXML
-    private Button btnEncrypt;
-
-    @FXML
-    private Button btnMail;
-
-    @FXML
-    private Pane pnlDashboard;
-
-    @FXML
-    private Pane pnlAlgorithm;
-
-    @FXML
-    private Pane pnlCerficate;
-
-    @FXML
-    private Pane pnlSigning;
-
-    @FXML
-    private Pane pnlEncrypt;
-
-    @FXML
-    private Pane pnlMail;
+    private Pane pnlRSA;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Initialize");
-        Pane dashboardPane = null;
-        try {
-            dashboardPane = FXMLLoader.load(getClass().getResource("/view/dashboard.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        pnlDashboard.getChildren().setAll(dashboardPane);
-        pnlDashboard.setStyle("-fx-background-color : #1620A1");
-        pnlDashboard.toFront();
+        typeCBX.setItems(FXCollections.observableArrayList("Symmetric", "Asymmetric", "Hashing"));
+
+        typeCBX.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue)
+            {
+                typeChanged(ov, oldvalue, newvalue);
+            }});
+
     }
 
+    public void typeChanged(ObservableValue<? extends String> observable,String oldValue,String newValue) {
+        String oldText = oldValue == null ? "null" : oldValue.toString();
+        String newText = newValue == null ? "null" : newValue.toString();
 
-    public void handleClicks(ActionEvent actionEvent) throws IOException {
-        if (actionEvent.getSource() == btnDashboard) {
-            Pane dashboardPane =  FXMLLoader.load(getClass().getResource("/view/dashboard.fxml"));
-            pnlDashboard.getChildren().setAll(dashboardPane);
-            pnlDashboard.setStyle("-fx-background-color : #1620A1");
-            pnlDashboard.toFront();
+        if(newText.equals("Symmetric")){
+            nameCBX.setItems(FXCollections.observableArrayList("AES", "DES"));
+            nameCBX.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+                public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue)
+                {
+                    try {
+                        nameChangedSymmetric(ov, oldvalue, newvalue);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }});
         }
-        if (actionEvent.getSource() == btnAlgorithm) {
-            Pane algorithmPane =  FXMLLoader.load(getClass().getResource("/view/algorithm.fxml"));
-            pnlAlgorithm.getChildren().setAll(algorithmPane);
-            pnlAlgorithm.setStyle("-fx-background-color : #151517");
-            pnlAlgorithm.toFront();
+        else if(newText.equals("Asymmetric")){
+            nameCBX.setItems(FXCollections.observableArrayList("RSA", "ECC"));
+            nameCBX.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+                public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue)
+                {
+                    try {
+                        nameChangedAsymmetric(ov, oldvalue, newvalue);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }});
         }
-        if (actionEvent.getSource() == btnCerficate) {
-            pnlCerficate.setStyle("-fx-background-color : #02030A");
-            pnlCerficate.toFront();
+        else {
+
         }
-        if(actionEvent.getSource()==btnSigning)
-        {
-            pnlSigning.setStyle("-fx-background-color : #896d6c");
-            pnlSigning.toFront();
+    }
+
+    public void nameChangedSymmetric(ObservableValue<? extends String> observable,String oldValue,String newValue) throws IOException {
+        String oldText = oldValue == null ? "null" : oldValue.toString();
+        String newText = newValue == null ? "null" : newValue.toString();
+
+        if(newText.equals("AES")){
+            Pane aesPane =  FXMLLoader.load(getClass().getResource("/view/aes.fxml"));
+            pnlAES.getChildren().setAll(aesPane);
+            pnlAES.setStyle("-fx-background-color : #1620A1");
+            pnlAES.toFront();
         }
-        if(actionEvent.getSource()==btnEncrypt)
-        {
-            pnlEncrypt.setStyle("-fx-background-color : #d9cd0f");
-            pnlEncrypt.toFront();
+        else if(newText.equals("DES")){
+            Pane aesPane =  FXMLLoader.load(getClass().getResource("/view/des.fxml"));
+            pnlDES.getChildren().setAll(aesPane);
+            pnlDES.setStyle("-fx-background-color : #eaeaef");
+            pnlDES.toFront();
         }
-        if(actionEvent.getSource()==btnMail)
-        {
-            pnlMail.setStyle("-fx-background-color : #f11426");
-            pnlMail.toFront();
+//        else {
+//
+//        }
+    }
+
+    public void nameChangedAsymmetric(ObservableValue<? extends String> observable,String oldValue,String newValue) throws IOException {
+        String oldText = oldValue == null ? "null" : oldValue.toString();
+        String newText = newValue == null ? "null" : newValue.toString();
+
+        if(newText.equals("RSA")){
+            Pane aesPane =  FXMLLoader.load(getClass().getResource("/view/rsa.fxml"));
+            pnlRSA.getChildren().setAll(aesPane);
+            pnlRSA.setStyle("-fx-background-color : #1620A1");
+            pnlRSA.toFront();
         }
+//        else if(newText.equals("DES")){
+//
+//        }
+//        else {
+//
+//        }
+    }
+
+    @FXML
+    public void closeAction(ActionEvent event) {
+        Platform.exit();
     }
 }

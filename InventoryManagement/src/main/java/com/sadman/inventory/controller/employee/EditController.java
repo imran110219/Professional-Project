@@ -110,6 +110,10 @@ public class EditController implements Initializable, EmployeeInterface {
             errorMessage += "No valid username!\n";
         }
 
+        else if (employeeModel.checkUser(usernameField.getText())) {
+            errorMessage += "Duplicate username!\n";
+        }
+
         if (emailField.getText() == null || emailField.getText().length() == 0) {
             errorMessage += "No valid email!\n";
         }

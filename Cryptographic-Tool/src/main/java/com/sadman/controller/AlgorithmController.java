@@ -1,8 +1,10 @@
 package com.sadman.controller;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -115,5 +117,10 @@ public class AlgorithmController implements Initializable {
 //        else {
 //
 //        }
+    }
+
+    @FXML
+    public void closeAction(ActionEvent event) {
+        Platform.exit();
     }
 }

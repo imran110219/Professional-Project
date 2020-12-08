@@ -25,17 +25,17 @@ public class Test {
     private static Session session;
 
     public static void main(String[] args) throws Exception {
-        String password = "123456";
+        String password = "Nasir12345";
         System.out.println(DigestUtils.sha1Hex(password));
-
-        HibernateUtil.setSessionFactory();
-        ProductModel productModel = new ProductModel();
-        CategoryModel categoryModel = new CategoryModel();
-
-        Category category = categoryModel.getCategory(7L);
+//
+//        HibernateUtil.setSessionFactory();
+//        ProductModel productModel = new ProductModel();
+//        CategoryModel categoryModel = new CategoryModel();
+//
+//        Category category = categoryModel.getCategory(7L);
 //        List<Product> products = productModel.getProductListByCategory(category);
 
-        System.out.println(productModel.getProductListByCategory(category).isEmpty());
+//        System.out.println(productModel.getProductListByCategory(category).isEmpty());
 //        System.out.println(Util.convertNumberToWord(213213));
 //        HibernateUtil.setSessionFactory();
 

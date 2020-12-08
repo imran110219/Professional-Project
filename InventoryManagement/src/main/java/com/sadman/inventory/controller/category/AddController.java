@@ -71,6 +71,10 @@ public class AddController implements Initializable, CategoryInterface {
             errorMessage += "No valid name!\n";
         }
 
+        else if (categoryModel.checkCategory(typeField.getText())) {
+            errorMessage += "Duplicate category type!\n";
+        }
+
         if (descriptionArea.getText() == null || descriptionArea.getText().length() == 0) {
             errorMessage += "No email description!\n";
         }

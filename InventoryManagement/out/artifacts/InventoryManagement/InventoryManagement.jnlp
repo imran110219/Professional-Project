@@ -9,7 +9,7 @@
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="FastInfoset-1.2.15.jar" size="311876" download="eager" />
-    <jar href="InventoryManagement.jar" size="665677" download="eager" />
+    <jar href="InventoryManagement.jar" size="674476" download="eager" />
     <jar href="activation-1.1.jar" size="62983" download="eager" />
     <jar href="antlr-2.7.7.jar" size="445288" download="eager" />
     <jar href="byte-buddy-1.10.2.jar" size="3343051" download="eager" />

@@ -11,4 +11,5 @@ public interface SupplierDao {
     public void updateSuplier(Supplier supplier);
     public void deleteSuplier(Supplier supplier);
     public ObservableList<String> getNames();
+    public boolean checkSupplier(String name);
 }

@@ -11,4 +11,5 @@ public interface CategoryDao {
     public void updateCategory(Category category);
     public void deleteCategory(Category category);
     public ObservableList<String> getTypes();
+    public boolean checkCategory(String type);
 }

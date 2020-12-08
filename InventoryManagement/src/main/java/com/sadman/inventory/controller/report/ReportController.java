@@ -183,7 +183,7 @@ public class ReportController implements Initializable, ReportInterface {
         });
         Scene scene = new Scene(root);
         stage.setTitle("Inventory:: Version 1.0");
-        stage.getIcons().add(new Image("/images/logo.png"));
+        stage.getIcons().add(new Image("/images/iconlogo.png"));
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
@@ -199,7 +199,7 @@ public class ReportController implements Initializable, ReportInterface {
         Scene scene = new Scene(root, width, height);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle(title);
-        stage.getIcons().add(new Image("/images/logo.png"));
+        stage.getIcons().add(new Image("/images/iconlogo.png"));
         stage.setScene(scene);
         stage.show();
     }
@@ -224,7 +224,7 @@ public class ReportController implements Initializable, ReportInterface {
         });
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("View Details");
-        stage.getIcons().add(new Image("/images/logo.png"));
+        stage.getIcons().add(new Image("/images/iconlogo.png"));
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
