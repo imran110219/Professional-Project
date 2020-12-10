@@ -157,4 +157,17 @@ public class ProductModel implements ProductDao {
 
         return products;
     }
+
+    @Override
+    public boolean checkProduct(String productName) {
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("from Product where productName=:name");
+        query.setParameter("name", productName);
+        Product product = (Product) query.uniqueResult();
+        session.close();
+
+        return product != null;
+    }
 }

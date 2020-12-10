@@ -53,9 +53,14 @@ public class EmployeeController implements Initializable, EmployeeInterface {
     @FXML
     private VBox drawer;
 
+    @FXML
+    private Label userLabel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         model = new EmployeeModel();
+
+        userLabel.setText(model.getAdminName());
 
         drawerAction();
         loadData();
@@ -237,7 +242,6 @@ public class EmployeeController implements Initializable, EmployeeInterface {
 
         Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
         selectedEmployee.setPassword("");
-        int selectedEmployeeId = employeeTable.getSelectionModel().getSelectedIndex();
         FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/employee/Edit.fxml")));
         EditController controller = new EditController();
         loader.setController(controller);
@@ -258,7 +262,7 @@ public class EmployeeController implements Initializable, EmployeeInterface {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
-        controller.setEmployee(selectedEmployee, selectedEmployeeId);
+        controller.setEmployee(selectedEmployee, selectedEmployee.getId());
         employeeTable.getSelectionModel().clearSelection();
 
     }

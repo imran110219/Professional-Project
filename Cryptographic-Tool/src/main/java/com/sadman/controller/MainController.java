@@ -59,7 +59,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Initialize");
-        Pane dashboardPane = null;
+        Pane dashboardPane = new Pane();
         try {
             dashboardPane = FXMLLoader.load(getClass().getResource("/view/dashboard.fxml"));
         } catch (IOException e) {

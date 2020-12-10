@@ -53,7 +53,8 @@ public class EditController implements Initializable, CategoryInterface {
             );
 
             categoryModel.updateCategory(editedCategory);
-            CATEGORYLIST.set((int) selectedCategoryId, editedCategory);
+            CATEGORYLIST.clear();
+            CATEGORYLIST.addAll(categoryModel.getCategories());
 
             ((Stage) saveButton.getScene().getWindow()).close();
 
@@ -88,7 +89,7 @@ public class EditController implements Initializable, CategoryInterface {
             errorMessage += "No valid name!\n";
         }
 
-        else if (categoryModel.checkCategory(typeField.getText())) {
+        else if (!categoryModel.getCategory(selectedCategoryId).getType().equals(typeField.getText()) && categoryModel.checkCategory(typeField.getText())) {
             errorMessage += "Duplicate category type!\n";
         }
 

@@ -111,9 +111,12 @@ public class AlgorithmController implements Initializable {
             pnlRSA.setStyle("-fx-background-color : #1620A1");
             pnlRSA.toFront();
         }
-//        else if(newText.equals("DES")){
-//
-//        }
+        else if(newText.equals("ECC")){
+            Pane eccPane =  FXMLLoader.load(getClass().getResource("/view/ecc.fxml"));
+            pnlRSA.getChildren().setAll(eccPane);
+            pnlRSA.setStyle("-fx-background-color : #1620A1");
+            pnlRSA.toFront();
+        }
 //        else {
 //
 //        }

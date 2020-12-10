@@ -57,7 +57,8 @@ public class EditController implements Initializable, EmployeeInterface {
             );
 
             employeeModel.updateEmployee(editedEmployee);
-            EMPLOYEELIST.set((int) selectedEmployeeId, editedEmployee);
+            EMPLOYEELIST.clear();
+            EMPLOYEELIST.addAll(employeeModel.getEmployees());
 
             ((Stage) saveButton.getScene().getWindow()).close();
 
@@ -110,7 +111,7 @@ public class EditController implements Initializable, EmployeeInterface {
             errorMessage += "No valid username!\n";
         }
 
-        else if (employeeModel.checkUser(usernameField.getText())) {
+        else if (!employeeModel.getEmployee(selectedEmployeeId).getUserName().equals(usernameField.getText()) && employeeModel.checkUser(usernameField.getText())) {
             errorMessage += "Duplicate username!\n";
         }
 

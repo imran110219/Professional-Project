@@ -78,9 +78,9 @@ public class EditController implements Initializable, ProductInterface {
                     category,
                     supplier
             );
-
             productModel.updateProduct(editedProduct);
-            PRODUCTLIST.set((int) selectedProductId, editedProduct);
+            PRODUCTLIST.clear();
+            PRODUCTLIST.addAll(productModel.getProducts());
 
             ((Stage) saveButton.getScene().getWindow()).close();
 
@@ -112,6 +112,10 @@ public class EditController implements Initializable, ProductInterface {
 
         if (nameField.getText() == null || nameField.getText().length() == 0) {
             errorMessage += "No valid name!\n";
+        }
+
+        else if (!productModel.getProduct(selectedProductId).getProductName().equals(nameField.getText()) && productModel.checkProduct(nameField.getText())) {
+            errorMessage += "Duplicate product name!\n";
         }
 
         if (priceField.getText() == null || priceField.getText().length() == 0) {

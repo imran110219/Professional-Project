@@ -9,7 +9,7 @@
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="FastInfoset-1.2.15.jar" size="311876" download="eager" />
-    <jar href="InventoryManagement.jar" size="674476" download="eager" />
+    <jar href="InventoryManagement.jar" size="587893" download="eager" />
     <jar href="activation-1.1.jar" size="62983" download="eager" />
     <jar href="antlr-2.7.7.jar" size="445288" download="eager" />
     <jar href="byte-buddy-1.10.2.jar" size="3343051" download="eager" />
@@ -36,7 +36,6 @@
     <jar href="jaxb-runtime-2.3.1.jar" size="1093432" download="eager" />
     <jar href="jboss-logging-3.3.2.Final.jar" size="66469" download="eager" />
     <jar href="jboss-transaction-api_1.2_spec-1.1.1.Final.jar" size="26290" download="eager" />
-    <jar href="log4j-1.2.17.jar" size="489884" download="eager" />
     <jar href="mail-1.4.jar" size="388864" download="eager" />
     <jar href="mysql-connector-java-8.0.16.jar" size="2293144" download="eager" />
     <jar href="protobuf-java-3.6.1.jar" size="1421323" download="eager" />

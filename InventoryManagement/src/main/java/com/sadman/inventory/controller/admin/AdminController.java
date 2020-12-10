@@ -2,6 +2,7 @@ package com.sadman.inventory.controller.admin;
 
 import com.sadman.inventory.entity.Invoice;
 import com.sadman.inventory.entity.Product;
+import com.sadman.inventory.model.EmployeeModel;
 import com.sadman.inventory.model.InvoiceModel;
 import com.sadman.inventory.model.ProductModel;
 import javafx.animation.TranslateTransition;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -50,14 +52,21 @@ public class AdminController implements Initializable {
     @FXML
     private PieChart stockChart;
 
+    @FXML
+    private Label userLabel;
+
     private ProductModel productModel;
     private InvoiceModel invoiceModel;
+    private EmployeeModel employeeModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         productModel = new ProductModel();
         invoiceModel = new InvoiceModel();
+        employeeModel = new EmployeeModel();
+
+        userLabel.setText(employeeModel.getAdminName());
 
         drawerAction();
         loadInvoiceChart();

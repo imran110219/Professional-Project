@@ -4,6 +4,7 @@ import com.sadman.inventory.entity.Category;
 import com.sadman.inventory.entity.Product;
 import com.sadman.inventory.interfaces.CategoryInterface;
 import com.sadman.inventory.model.CategoryModel;
+import com.sadman.inventory.model.EmployeeModel;
 import com.sadman.inventory.model.ProductModel;
 import javafx.animation.TranslateTransition;
 import javafx.beans.binding.Bindings;
@@ -45,6 +46,7 @@ public class CategoryController implements Initializable, CategoryInterface {
     private Button editButton, deleteButton;
     private CategoryModel model;
     private ProductModel productModel;
+    private EmployeeModel employeeModel;
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -54,10 +56,17 @@ public class CategoryController implements Initializable, CategoryInterface {
     @FXML
     private VBox drawer;
 
+    @FXML
+    private Label userLabel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         model = new CategoryModel();
         productModel = new ProductModel();
+        employeeModel = new EmployeeModel();
+
+        userLabel.setText(employeeModel.getAdminName());
 
         drawerAction();
         loadData();
@@ -229,7 +238,6 @@ public class CategoryController implements Initializable, CategoryInterface {
     public void editAction(ActionEvent event) throws Exception {
 
         Category selectedCategory = categoryTable.getSelectionModel().getSelectedItem();
-        int selectedCategoryId = categoryTable.getSelectionModel().getSelectedIndex();
         FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/category/Edit.fxml")));
         EditController controller = new EditController();
         loader.setController(controller);
@@ -250,7 +258,7 @@ public class CategoryController implements Initializable, CategoryInterface {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
-        controller.setCategory(selectedCategory, selectedCategoryId);
+        controller.setCategory(selectedCategory, selectedCategory.getId());
         categoryTable.getSelectionModel().clearSelection();
     }
 

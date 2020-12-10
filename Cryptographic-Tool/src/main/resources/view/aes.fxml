@@ -4,12 +4,32 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane prefHeight="398.0" prefWidth="748.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="398.0" prefWidth="748.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sadman.controller.AESController">
     <children>
-        <Label layoutX="57.0" layoutY="25.0" text="AES" textFill="#e7e5e5">
+        <Label layoutX="14.0" layoutY="14.0" text="AES" textFill="#23151b">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
+      <Label layoutX="13.0" layoutY="91.0" text="Input" textFill="#21141a">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="inputText" layoutX="76.0" layoutY="91.0" prefHeight="68.0" prefWidth="639.0" />
+      <TextField fx:id="keyText" layoutX="76.0" layoutY="180.0" prefHeight="25.0" prefWidth="639.0" />
+      <Label layoutX="13.0" layoutY="179.0" text="Key">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="13.0" layoutY="230.0" text="Output">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="outputText" layoutX="76.0" layoutY="223.0" prefHeight="68.0" prefWidth="639.0" />
+      <Button fx:id="btnEncrypt" onAction="#doEncrypt" layoutX="76.0" layoutY="317.0" mnemonicParsing="false" text="Encrypt" />
+      <Button fx:id="btnDecrypt" onAction="#doDecrypt" layoutX="163.0" layoutY="317.0" mnemonicParsing="false" text="Decrypt" />
     </children>
 </Pane>

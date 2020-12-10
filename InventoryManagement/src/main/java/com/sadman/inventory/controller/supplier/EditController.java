@@ -71,7 +71,8 @@ public class EditController implements Initializable, SupplierInterface {
             );
 
             supplierModel.updateSuplier(editedSupplier);
-            SUPPLIERLIST.set((int) selectedSupplierId, editedSupplier);
+            SUPPLIERLIST.clear();
+            SUPPLIERLIST.addAll(supplierModel.getSuppliers());
 
             ((Stage) saveButton.getScene().getWindow()).close();
 
@@ -91,7 +92,7 @@ public class EditController implements Initializable, SupplierInterface {
             errorMessage += "No valid first name!\n";
         }
 
-        else if (supplierModel.checkSupplier(supplierField.getText())) {
+        else if (!supplierModel.getSupplier(selectedSupplierId).getName().equals(supplierField.getText()) && supplierModel.checkSupplier(supplierField.getText())) {
             errorMessage += "Duplicate supplier name!\n";
         }
 

@@ -231,7 +231,6 @@ public class SupplierController implements Initializable, SupplierInterface {
     public void editAction(ActionEvent event) throws Exception {
 
         Supplier selectedSupplier = supplierTable.getSelectionModel().getSelectedItem();
-        int selectedSupplierId = supplierTable.getSelectionModel().getSelectedIndex();
         FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/supplier/Edit.fxml")));
         EditController controller = new EditController();
         loader.setController(controller);
@@ -252,7 +251,7 @@ public class SupplierController implements Initializable, SupplierInterface {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
-        controller.setSupplier(selectedSupplier, selectedSupplierId);
+        controller.setSupplier(selectedSupplier, selectedSupplier.getId());
         supplierTable.getSelectionModel().clearSelection();
     }
 

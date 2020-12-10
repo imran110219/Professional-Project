@@ -92,6 +92,10 @@ public class AddController implements Initializable, ProductInterface {
             errorMessage += "No valid name!\n";
         }
 
+        else if (productModel.checkProduct(nameField.getText())) {
+            errorMessage += "Duplicate product name!\n";
+        }
+
         if (priceField.getText() == null || priceField.getText().length() == 0) {
             errorMessage += "No valid price!\n";
         }

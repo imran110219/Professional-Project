@@ -3,6 +3,7 @@ package com.sadman.inventory.controller.product;
 import com.sadman.inventory.entity.Product;
 import com.sadman.inventory.entity.Sale;
 import com.sadman.inventory.interfaces.ProductInterface;
+import com.sadman.inventory.model.EmployeeModel;
 import com.sadman.inventory.model.ProductModel;
 import com.sadman.inventory.model.SalesModel;
 import javafx.animation.TranslateTransition;
@@ -70,12 +71,20 @@ public class ProductController implements Initializable, ProductInterface {
     @FXML
     private VBox drawer;
 
+    @FXML
+    private Label userLabel;
+
     private SalesModel salesModel;
+    private EmployeeModel employeeModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         model = new ProductModel();
         salesModel = new SalesModel();
+        employeeModel = new EmployeeModel();
+
+        userLabel.setText(employeeModel.getAdminName());
+
         drawerAction();
         loadData();
 
@@ -286,7 +295,6 @@ public class ProductController implements Initializable, ProductInterface {
     public void editAction(ActionEvent event) throws Exception {
 
         Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
-        int selectedProductId = productTable.getSelectionModel().getSelectedIndex();
         FXMLLoader loader = new FXMLLoader((getClass().getResource("/fxml/product/Edit.fxml")));
         EditController controller = new EditController();
         loader.setController(controller);
@@ -299,7 +307,7 @@ public class ProductController implements Initializable, ProductInterface {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
-        controller.setProduct(selectedProduct, selectedProductId);
+        controller.setProduct(selectedProduct, selectedProduct.getId());
         productTable.getSelectionModel().clearSelection();
     }
 

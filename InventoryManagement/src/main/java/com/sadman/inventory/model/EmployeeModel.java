@@ -130,4 +130,17 @@ public class EmployeeModel implements EmployeeDao {
 
         return employee.getPassword().equals(password);
     }
+
+    @Override
+    public String getAdminName() {
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("from Employee where type = :type");
+        query.setParameter("type", "admin");
+        Employee employee = (Employee) query.uniqueResult();
+        session.getTransaction().commit();
+        session.close();
+        return employee.getFirstName() + " " + employee.getLastName();
+    }
 }

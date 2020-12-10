@@ -4,6 +4,7 @@ import com.sadman.inventory.entity.Category;
 import com.sadman.inventory.entity.Invoice;
 import com.sadman.inventory.entity.Product;
 import com.sadman.inventory.model.CategoryModel;
+import com.sadman.inventory.model.EmployeeModel;
 import com.sadman.inventory.model.InvoiceModel;
 import com.sadman.inventory.model.ProductModel;
 import com.sadman.inventory.pdf.PrintDailyReport;
@@ -15,10 +16,7 @@ import org.hibernate.Session;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class Test {
 
@@ -27,10 +25,24 @@ public class Test {
     public static void main(String[] args) throws Exception {
         String password = "Nasir12345";
         System.out.println(DigestUtils.sha1Hex(password));
-//
+
+        List<String> list=new ArrayList<String>();
+        //Adding elements in the List
+        list.add("Mango");
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Grapes");
+        list.set(0,"AA");
+        //Iterating the List element using for-each loop
+        for(String fruit:list)
+            System.out.println(fruit);
+
 //        HibernateUtil.setSessionFactory();
 //        ProductModel productModel = new ProductModel();
 //        CategoryModel categoryModel = new CategoryModel();
+//        EmployeeModel employeeModel = new EmployeeModel();
+//
+//        System.out.println(employeeModel.getAdminName());
 //
 //        Category category = categoryModel.getCategory(7L);
 //        List<Product> products = productModel.getProductListByCategory(category);

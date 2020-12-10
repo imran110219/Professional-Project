@@ -20,4 +20,5 @@ public interface ProductDao {
     public void increaseProduct(Product product);
     public List<Product> getProductListByCategory(Category category);
     public List<Product> getProductListBySupplier(Supplier supplier);
+    public boolean checkProduct(String productName);
 }
