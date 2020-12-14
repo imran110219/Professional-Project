@@ -81,7 +81,7 @@ public class MainController implements Initializable {
         if (actionEvent.getSource() == btnAlgorithm) {
             Pane algorithmPane =  FXMLLoader.load(getClass().getResource("/view/algorithm.fxml"));
             pnlAlgorithm.getChildren().setAll(algorithmPane);
-            pnlAlgorithm.setStyle("-fx-background-color : #151517");
+            pnlAlgorithm.setStyle("-fx-background-color : #F1F0F6");
             pnlAlgorithm.toFront();
         }
         if (actionEvent.getSource() == btnCerficate) {

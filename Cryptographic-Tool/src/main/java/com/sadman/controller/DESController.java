@@ -1,6 +1,7 @@
 package com.sadman.controller;
 
-import com.sadman.service.AESService;
+import com.sadman.service.DESService;
+import com.sadman.util.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,13 +14,12 @@ import javax.crypto.SecretKey;
 import java.io.IOException;
 import java.net.URL;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 import java.util.ResourceBundle;
 
 /**
  * @author Sadman
  */
-public class AESController implements Initializable {
+public class DESController implements Initializable {
 
     @FXML
     private TextArea inputText;
@@ -45,22 +45,22 @@ public class AESController implements Initializable {
     }
 
     public void generateKey(ActionEvent actionEvent) throws NoSuchAlgorithmException {
-        SecretKey secretKey = KeyGenerator.getInstance("AES").generateKey();
-        String key = Base64.getEncoder().encodeToString(secretKey.getEncoded());
+        SecretKey secretKey = KeyGenerator.getInstance("DES").generateKey();
+        String key = Util.convertKeyToString(secretKey);
         keyText.setText(key);
     }
 
     public void doEncrypt(ActionEvent actionEvent) throws IOException {
         String originalString = inputText.getText();
         String keyString = keyText.getText();
-        String encryptedString = AESService.encrypt(originalString, keyString);
+        String encryptedString = DESService.encrypt(originalString, keyString);
         outputText.setText(encryptedString);
     }
 
     public void doDecrypt(ActionEvent actionEvent) throws IOException {
         String originalString = inputText.getText();
         String keyString = keyText.getText();
-        String decryptedString = AESService.decrypt(originalString, keyString) ;
+        String decryptedString = DESService.decrypt(originalString, keyString) ;
         outputText.setText(decryptedString);
     }
 }

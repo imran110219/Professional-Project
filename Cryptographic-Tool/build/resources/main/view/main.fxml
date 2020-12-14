@@ -104,12 +104,12 @@
         </VBox>
         <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0">
             <children>
-                <Pane fx:id="pnlDashboard" prefHeight="554.0" prefWidth="793.0" />
+                <Pane fx:id="pnlDashboard" prefHeight="576.0" prefWidth="793.0" />
                 <Pane fx:id="pnlCerficate" prefHeight="200.0" prefWidth="200.0" />
                 <Pane fx:id="pnlSigning" prefHeight="200.0" prefWidth="200.0" />
                 <Pane fx:id="pnlEncrypt" prefHeight="200.0" prefWidth="200.0" />
                 <Pane fx:id="pnlMail" prefHeight="200.0" prefWidth="200.0" />
-                <Pane fx:id="pnlAlgorithm" prefHeight="554.0" prefWidth="793.0" />
+                <Pane fx:id="pnlAlgorithm" prefHeight="576.0" prefWidth="793.0" />
             </children>
         </StackPane>
     </children>

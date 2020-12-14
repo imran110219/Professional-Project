@@ -93,7 +93,7 @@ public class AlgorithmController implements Initializable {
         else if(newText.equals("DES")){
             Pane aesPane =  FXMLLoader.load(getClass().getResource("/view/des.fxml"));
             pnlDES.getChildren().setAll(aesPane);
-            pnlDES.setStyle("-fx-background-color : #eaeaef");
+            pnlDES.setStyle("-fx-background-color : #636368");
             pnlDES.toFront();
         }
 //        else {
