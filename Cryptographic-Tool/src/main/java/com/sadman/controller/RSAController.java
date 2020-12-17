@@ -67,7 +67,7 @@ public class RSAController implements Initializable {
     }
 
     public void doEncrypt(ActionEvent actionEvent) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidKeyException, InvalidKeySpecException {
-        String originalString = inputText.getText();
+        String plainString = inputText.getText();
         String publicKeyString = publicKeyText.getText();
         byte[] publicBytes = Base64.getDecoder().decode(publicKeyString);
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicBytes);
@@ -76,7 +76,7 @@ public class RSAController implements Initializable {
 
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, publickey);
-        String encryptedString = Base64.getEncoder().encodeToString(cipher.doFinal(originalString.getBytes("UTF-8")));
+        String encryptedString = Base64.getEncoder().encodeToString(cipher.doFinal(plainString.getBytes("UTF-8")));
         outputText.setText(encryptedString);
     }
 

@@ -45,6 +45,7 @@
                 <Pane fx:id="pnlAES" prefHeight="398.0" prefWidth="748.0" />
                 <Pane fx:id="pnlDES" prefHeight="398.0" prefWidth="748.0" />
                 <Pane fx:id="pnlRSA" prefHeight="398.0" prefWidth="784.0" />
+                <Pane fx:id="pnlHashing" prefHeight="398.0" prefWidth="784.0" />
             </children>
         </StackPane>
         <Button layoutX="744.0" layoutY="5.0" mnemonicParsing="false" onAction="#closeAction" text="Close" />

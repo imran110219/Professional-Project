@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -35,65 +36,77 @@ public class AlgorithmController implements Initializable {
     @FXML
     private Pane pnlRSA;
 
+    @FXML
+    private Pane pnlHashing;
+
+    @FXML
+    private Label lblHashing;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         typeCBX.setItems(FXCollections.observableArrayList("Symmetric", "Asymmetric", "Hashing"));
 
         typeCBX.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue)
-            {
+            public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue) {
                 typeChanged(ov, oldvalue, newvalue);
-            }});
+            }
+        });
 
     }
 
-    public void typeChanged(ObservableValue<? extends String> observable,String oldValue,String newValue) {
+    public void typeChanged(ObservableValue<? extends String> observable, String oldValue, String newValue) {
         String oldText = oldValue == null ? "null" : oldValue.toString();
         String newText = newValue == null ? "null" : newValue.toString();
 
-        if(newText.equals("Symmetric")){
+        if (newText.equals("Symmetric")) {
             nameCBX.setItems(FXCollections.observableArrayList("AES", "DES"));
             nameCBX.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-                public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue)
-                {
+                public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue) {
                     try {
                         nameChangedSymmetric(ov, oldvalue, newvalue);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }});
-        }
-        else if(newText.equals("Asymmetric")){
+                }
+            });
+        } else if (newText.equals("Asymmetric")) {
             nameCBX.setItems(FXCollections.observableArrayList("RSA", "ECC"));
             nameCBX.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-                public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue)
-                {
+                public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue) {
                     try {
                         nameChangedAsymmetric(ov, oldvalue, newvalue);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }});
-        }
-        else {
-
+                }
+            });
+        } else {
+            nameCBX.setItems(FXCollections.observableArrayList("MD5", "SHA-1", "SHA-256", "SHA-512"));
+            nameCBX.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+                public void changed(ObservableValue<? extends String> ov, final String oldvalue, final String newvalue) {
+                    try {
+                        nameChangedHashing(ov, oldvalue, newvalue);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
     }
 
-    public void nameChangedSymmetric(ObservableValue<? extends String> observable,String oldValue,String newValue) throws IOException {
+    public void nameChangedSymmetric(ObservableValue<? extends String> observable, String oldValue, String newValue) throws IOException {
         String oldText = oldValue == null ? "null" : oldValue.toString();
         String newText = newValue == null ? "null" : newValue.toString();
 
-        if(newText.equals("AES")){
-            Pane aesPane =  FXMLLoader.load(getClass().getResource("/view/aes.fxml"));
+        if (newText.equals("AES")) {
+            Pane aesPane = FXMLLoader.load(getClass().getResource("/view/aes.fxml"));
             pnlAES.getChildren().setAll(aesPane);
-            pnlAES.setStyle("-fx-background-color : #1620A1");
+            pnlAES.setStyle("-fx-background-color : #F1F0F6");
             pnlAES.toFront();
-        }
-        else if(newText.equals("DES")){
-            Pane aesPane =  FXMLLoader.load(getClass().getResource("/view/des.fxml"));
+        } else if (newText.equals("DES")) {
+            Pane aesPane = FXMLLoader.load(getClass().getResource("/view/des.fxml"));
             pnlDES.getChildren().setAll(aesPane);
-            pnlDES.setStyle("-fx-background-color : #636368");
+            pnlDES.setStyle("-fx-background-color : #F1F0F6");
             pnlDES.toFront();
         }
 //        else {
@@ -101,25 +114,36 @@ public class AlgorithmController implements Initializable {
 //        }
     }
 
-    public void nameChangedAsymmetric(ObservableValue<? extends String> observable,String oldValue,String newValue) throws IOException {
+    public void nameChangedAsymmetric(ObservableValue<? extends String> observable, String oldValue, String newValue) throws IOException {
         String oldText = oldValue == null ? "null" : oldValue.toString();
         String newText = newValue == null ? "null" : newValue.toString();
 
-        if(newText.equals("RSA")){
-            Pane aesPane =  FXMLLoader.load(getClass().getResource("/view/rsa.fxml"));
+        if (newText.equals("RSA")) {
+            Pane aesPane = FXMLLoader.load(getClass().getResource("/view/rsa.fxml"));
             pnlRSA.getChildren().setAll(aesPane);
-            pnlRSA.setStyle("-fx-background-color : #1620A1");
+            pnlRSA.setStyle("-fx-background-color : #F1F0F6");
             pnlRSA.toFront();
-        }
-        else if(newText.equals("ECC")){
-            Pane eccPane =  FXMLLoader.load(getClass().getResource("/view/ecc.fxml"));
+        } else if (newText.equals("ECC")) {
+            Pane eccPane = FXMLLoader.load(getClass().getResource("/view/ecc.fxml"));
             pnlRSA.getChildren().setAll(eccPane);
-            pnlRSA.setStyle("-fx-background-color : #1620A1");
+            pnlRSA.setStyle("-fx-background-color : #F1F0F6");
             pnlRSA.toFront();
         }
 //        else {
 //
 //        }
+    }
+
+    public void nameChangedHashing(ObservableValue<? extends String> observable, String oldValue, String newValue) throws IOException {
+        String oldText = oldValue == null ? "null" : oldValue.toString();
+        String newText = newValue == null ? "null" : newValue.toString();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/hashing.fxml"));
+        HashingController hashingController = new HashingController(newText);
+        loader.setController(hashingController);
+        Pane hashingPane = loader.load();
+        pnlHashing.getChildren().setAll(hashingPane);
+        pnlHashing.setStyle("-fx-background-color : #F1F0F6");
+        pnlHashing.toFront();
     }
 
     @FXML
