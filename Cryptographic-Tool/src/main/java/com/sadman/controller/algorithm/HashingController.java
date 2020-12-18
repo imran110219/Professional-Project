@@ -1,4 +1,4 @@
-package com.sadman.controller;
+package com.sadman.controller.algorithm;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
