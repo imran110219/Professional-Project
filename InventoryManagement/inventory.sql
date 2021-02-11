@@ -20,6 +20,10 @@ SET time_zone = "+00:00";
 -- Database: `inventory`
 --
 
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`inventory` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `inventory`;
+
 -- --------------------------------------------------------
 
 --
@@ -30,7 +34,7 @@ CREATE TABLE `categories` (
   `id` INT(11) NOT NULL,
   `type` VARCHAR(100) NOT NULL,
   `description` TEXT NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `categories`
@@ -49,16 +53,16 @@ INSERT INTO `categories` (`id`, `type`, `description`) VALUES
 --
 
 CREATE TABLE `employees` (
-  `id` int(11) NOT NULL,
-  `firstname` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
-  `username` varchar(40) NOT NULL,
-  `email` varchar(40) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `phone` varchar(100) NOT NULL,
-  `address` text NOT NULL,
-  `type` enum('admin','employee') NOT NULL DEFAULT 'employee'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` INT(11) NOT NULL,
+  `firstname` VARCHAR(100) NOT NULL,
+  `lastname` VARCHAR(100) NOT NULL,
+  `username` VARCHAR(40) NOT NULL,
+  `email` VARCHAR(40) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
+  `phone` VARCHAR(100) NOT NULL,
+  `address` TEXT NOT NULL,
+  `type` ENUM('admin','employee') NOT NULL DEFAULT 'employee'
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `employees`
@@ -75,16 +79,16 @@ INSERT INTO `employees` (`id`, `firstname`, `lastname`, `username`, `email`, `pa
 --
 
 CREATE TABLE `invoices` (
-  `id` varchar(13) NOT NULL,
-  `employeeId` int(11) NOT NULL,
-  `total` double NOT NULL,
-  `vat` double NOT NULL,
-  `discount` double NOT NULL,
-  `payable` double NOT NULL,
-  `paid` double NOT NULL,
-  `returned` double NOT NULL,
-  `datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` VARCHAR(13) NOT NULL,
+  `employeeId` INT(11) NOT NULL,
+  `total` DOUBLE NOT NULL,
+  `vat` DOUBLE NOT NULL,
+  `discount` DOUBLE NOT NULL,
+  `payable` DOUBLE NOT NULL,
+  `paid` DOUBLE NOT NULL,
+  `returned` DOUBLE NOT NULL,
+  `datetime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `invoices`
@@ -112,14 +116,14 @@ INSERT INTO `invoices` (`id`, `employeeId`, `total`, `vat`, `discount`, `payable
 --
 
 CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
-  `categoryId` int(11) NOT NULL,
-  `supplierId` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `price` double NOT NULL,
-  `quantity` double NOT NULL,
-  `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` INT(11) NOT NULL,
+  `categoryId` INT(11) NOT NULL,
+  `supplierId` INT(11) NOT NULL,
+  `name` VARCHAR(100) NOT NULL,
+  `price` DOUBLE NOT NULL,
+  `quantity` DOUBLE NOT NULL,
+  `description` TEXT NOT NULL
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `products`
@@ -142,14 +146,14 @@ INSERT INTO `products` (`id`, `categoryId`, `supplierId`, `name`, `price`, `quan
 --
 
 CREATE TABLE `purchases` (
-  `id` int(11) NOT NULL,
-  `productId` int(11) NOT NULL,
-  `supplierId` int(11) NOT NULL,
-  `quantity` double NOT NULL,
-  `price` double NOT NULL,
-  `total` double NOT NULL,
-  `datetime` datetime DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` INT(11) NOT NULL,
+  `productId` INT(11) NOT NULL,
+  `supplierId` INT(11) NOT NULL,
+  `quantity` DOUBLE NOT NULL,
+  `price` DOUBLE NOT NULL,
+  `total` DOUBLE NOT NULL,
+  `datetime` DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `purchases`
@@ -168,14 +172,14 @@ INSERT INTO `purchases` (`id`, `productId`, `supplierId`, `quantity`, `price`, `
 --
 
 CREATE TABLE `sales` (
-  `id` int(11) NOT NULL,
-  `invoiceId` varchar(13) NOT NULL,
-  `productId` int(11) NOT NULL,
-  `quantity` double NOT NULL,
-  `price` int(11) NOT NULL,
-  `total` double NOT NULL,
-  `datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` INT(11) NOT NULL,
+  `invoiceId` VARCHAR(13) NOT NULL,
+  `productId` INT(11) NOT NULL,
+  `quantity` DOUBLE NOT NULL,
+  `price` INT(11) NOT NULL,
+  `total` DOUBLE NOT NULL,
+  `datetime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sales`
@@ -211,11 +215,11 @@ INSERT INTO `sales` (`id`, `invoiceId`, `productId`, `quantity`, `price`, `total
 --
 
 CREATE TABLE `suppliers` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `phone` varchar(100) NOT NULL,
-  `address` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` INT(11) NOT NULL,
+  `name` VARCHAR(100) NOT NULL,
+  `phone` VARCHAR(100) NOT NULL,
+  `address` TEXT NOT NULL
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `suppliers`
@@ -290,32 +294,32 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --
