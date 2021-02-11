@@ -21,7 +21,7 @@
             </Label>
             <ImageView fitHeight="240.0" fitWidth="222.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/inventory2.png" />
+                  <Image url="@../images/inventory.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="40.0" />
