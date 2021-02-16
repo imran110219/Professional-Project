@@ -1,5 +1,6 @@
 package com.sadman.onlineshowroom.service;
 
+import com.sadman.onlineshowroom.model.Role;
 import com.sadman.onlineshowroom.model.User;
 import com.sadman.onlineshowroom.repository.RoleRepository;
 import com.sadman.onlineshowroom.repository.UserRepository;
@@ -7,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -22,6 +21,14 @@ public class UserService {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public User saveUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setActive(true);
+        Role userRole = roleRepository.findByRole("ADMIN");
+        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        return userRepository.save(user);
+    }
 
     public List<User> getAllUsers() {
         List<User> result = (List<User>) userRepository.findAll();
@@ -44,7 +51,7 @@ public class UserService {
     }
 
     public User createUser(User entity) {
-        entity = userRepository.save(entity);
+        entity = saveUser(entity);
         return entity;
     }
 
@@ -56,12 +63,15 @@ public class UserService {
             newEntity.setEmail(entity.getEmail());
             newEntity.setFirstName(entity.getFirstName());
             newEntity.setLastName(entity.getLastName());
+            newEntity.setUserName(entity.getUserName());
+            newEntity.setPassword(bCryptPasswordEncoder.encode(entity.getPassword()));
+            newEntity.setPhone(entity.getPhone());
 
             newEntity = userRepository.save(newEntity);
 
             return newEntity;
         } else {
-            entity = userRepository.save(entity);
+            entity = saveUser(entity);
 
             return entity;
         }

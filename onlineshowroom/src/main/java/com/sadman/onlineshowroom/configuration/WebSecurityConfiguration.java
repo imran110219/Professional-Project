@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -38,7 +39,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers(loginPage).permitAll()
-                //.antMatchers("/registration").permitAll()
+                .antMatchers("/registration").permitAll()
                 .antMatchers("/product/**").permitAll()
                 .antMatchers("/category/**").permitAll()
                 .antMatchers("/supplier/**").permitAll()
@@ -53,19 +54,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginPage(loginPage)
                 .loginPage("/")
                 .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/product")
+                .defaultSuccessUrl("/user")
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher(logoutPage))
                 .logoutSuccessUrl(loginPage).and().exceptionHandling();
+
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+                .antMatchers("/static/**", "/css/**", "/js/**", "/images/**", "/fonts/**");
     }
 }
 
