@@ -36,7 +36,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         String logoutPage = "/logout";
 
         http.
-                authorizeRequests()
+                sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+                .and().authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers(loginPage).permitAll()
                 .antMatchers("/registration").permitAll()
