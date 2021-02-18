@@ -36,16 +36,19 @@ public class UserController {
     }
 
     @RequestMapping(path = {"/user/add"})
-    public String addUser(Model model) throws Exception {
-        model.addAttribute("user", new User());
-        model.addAttribute("roleSet",roleService.getAllRoleSet());
-        return "user/add-user";
+    public ModelAndView addUser(Model model) throws Exception {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user", new User());
+        modelAndView.addObject("roleSet", roleService.getAllRoleSet());
+        modelAndView.setViewName("user/add-user");
+        return modelAndView;
     }
 
     @RequestMapping(path = {"/user/edit/{id}"})
     public String editUserById(Model model, @PathVariable("id") Long id) throws Exception {
         User entity = userService.getUserById(id);
         model.addAttribute("user", entity);
+        model.addAttribute("roleSet", roleService.getAllRoleSet());
         return "user/edit-user";
     }
 

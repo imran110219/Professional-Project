@@ -40,14 +40,23 @@
                                    id="userName" placeholder="UserName" />
                         </div>
                         <div class="form-group col-md-8">
-                            <label for="password" class="col-form-label">UserName</label>
+                            <label for="password" class="col-form-label">Password</label>
                             <input type="password" th:field="*{password}" class="form-control"
-                                   id="password" placeholder="Password" />
+                                   id="password" placeholder="Password"/>
                         </div>
                         <div class="form-group col-md-8">
                             <label for="phone" class="col-form-label">Phone</label>
                             <input type="text" th:field="*{phone}" class="form-control"
-                                   id="phone" placeholder="Phone" />
+                                   id="phone" placeholder="Phone"/>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="role" class="col-form-label">Role</label>
+                            <select class="form-control" id="role" th:field="*{roles}" multiple="multiple">
+                                <option th:each="role : ${roleSet}"
+                                        th:value="${role.getId()}"
+                                        th:text="${role.getRole()}">
+                                </option>
+                            </select>
                         </div>
 
                         <div class="col-md-6">

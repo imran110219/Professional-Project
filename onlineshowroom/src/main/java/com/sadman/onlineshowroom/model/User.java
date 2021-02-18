@@ -32,6 +32,8 @@ public class User {
     @NotEmpty(message = "*Please provide your password")
     @Column(name = "password")
     private String password;
+    @Length(min = 11, max=11, message = "*Your password must have at least 11 characters")
+    @NotEmpty(message = "*Please provide your phone number")
     @Column(name = "phone")
     private String phone;
     @Column(name = "active")
