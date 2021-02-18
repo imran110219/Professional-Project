@@ -66,6 +66,7 @@ public class UserService {
             newEntity.setUserName(entity.getUserName());
             newEntity.setPassword(bCryptPasswordEncoder.encode(entity.getPassword()));
             newEntity.setPhone(entity.getPhone());
+            newEntity.setActive(entity.getActive());
 
             newEntity = userRepository.save(newEntity);
 

@@ -1,6 +1,7 @@
 package com.sadman.onlineshowroom.controller;
 
 import com.sadman.onlineshowroom.model.User;
+import com.sadman.onlineshowroom.service.RoleService;
 import com.sadman.onlineshowroom.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    RoleService roleService;
+
     @GetMapping(value={"/login"})
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
@@ -25,46 +29,40 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user")
-    public String getAllUsers(Model model)
-    {
+    public String getAllUsers(Model model) {
         List<User> list = userService.getAllUsers();
         model.addAttribute("users", list);
         return "user/user-list";
     }
 
     @RequestMapping(path = {"/user/add"})
-    public String addUser(Model model) throws Exception
-    {
+    public String addUser(Model model) throws Exception {
         model.addAttribute("user", new User());
+        model.addAttribute("roleSet",roleService.getAllRoleSet());
         return "user/add-user";
     }
 
     @RequestMapping(path = {"/user/edit/{id}"})
-    public String editUserById(Model model, @PathVariable("id") Long id) throws Exception
-    {
+    public String editUserById(Model model, @PathVariable("id") Long id) throws Exception {
         User entity = userService.getUserById(id);
         model.addAttribute("user", entity);
         return "user/edit-user";
     }
 
     @RequestMapping(path = "/user/delete/{id}")
-    public String deleteUserById(Model model, @PathVariable("id") Long id)
-            throws Exception
-    {
+    public String deleteUserById(Model model, @PathVariable("id") Long id) throws Exception {
         userService.deleteUserById(id);
         return "redirect:/user";
     }
 
     @RequestMapping(path = "/user/createUser", method = RequestMethod.POST)
-    public String createUser(User user)
-    {
+    public String createUser(User user) {
         userService.createUser(user);
         return "redirect:/user";
     }
 
     @RequestMapping(path = "/user/updateUser", method = RequestMethod.POST)
-    public String updateUser(User user)
-    {
+    public String updateUser(User user) {
         userService.updateUser(user);
         return "redirect:/user";
     }
