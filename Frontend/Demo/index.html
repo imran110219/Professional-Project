@@ -1,0 +1,15 @@
+<html>
+ <head>
+  <title>How to include HTML page with jQuery</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  <script type='text/javascript'>
+   $(document).ready(function(){
+    $( "#header" ).load( "header.html" );
+   });
+  </script>
+ </head> 
+ <body>
+  <div id='header'></div>
+  <div class='content'>Content</div>
+ </body>
+</html>
